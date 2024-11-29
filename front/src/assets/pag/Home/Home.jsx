@@ -1,10 +1,10 @@
 import React from 'react';
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../../components/NavBar/NavBar';
 import './Home.css';
-import Banner from './../components/Banner/Banner';
-import SearchBar from './../components/SearchBar/SearchBar';
-import About from './../components/About/About';
-import Tips from './../components/Tips/Tips';
+import Banner from '../../components/Banner/Banner';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import About from '../../components/About/About';
+import Tips from '../../components/Tips/Tips';
 
 function Home() {
   return (
@@ -13,7 +13,7 @@ function Home() {
     <Banner></Banner>
     <About></About>
     <Tips></Tips>
-    <SearchBar></SearchBar>
+   
 
       </>
   

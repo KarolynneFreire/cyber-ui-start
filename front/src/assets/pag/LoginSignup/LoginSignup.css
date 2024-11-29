@@ -1,0 +1,89 @@
+.form-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .form-content {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    z-index: 1;
+    color: #fff;
+  }
+  
+  .form-content h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #00ff00; 
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  .form-group input::placeholder {
+    color: #ddd;
+  }
+  
+  .form-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #00ff00;
+    color: #000;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-button:hover {
+    background-color: #008000;
+  }
+  
+  .toggle-text {
+    margin-top: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .toggle-text button {
+    background: none;
+    border: none;
+    color: #00ff00;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .toggle-text button:hover {
+    color: #008000;
+  }
