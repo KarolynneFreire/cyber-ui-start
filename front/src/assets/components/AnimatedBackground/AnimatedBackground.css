@@ -6,13 +6,14 @@
   height: 100vh;
   background: linear-gradient(120deg, #0d0d0d, #1e1e1e); /* Fundo escuro */
   overflow: hidden;
-  z-index: -1; /* Mantém no fundo */
+  z-index: -1; /* Fica atrás do conteúdo */
 }
 
+/* Partículas binárias */
 .binary-particle {
   position: absolute;
-  color: #00ff00; /* Clássico verde neon */
-  font-family: "Courier New", Courier, monospace; /* Estilo de terminal */
+  color: #00ff00; /* Verde neon */
+  font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   text-shadow: 0 0 5px rgba(0, 255, 0, 0.8);
 }

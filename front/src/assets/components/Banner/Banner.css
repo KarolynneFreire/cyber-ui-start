@@ -1,0 +1,37 @@
+/* Container do banner */
+.banner-container {
+    position: relative;
+    width: 100%; /* Largura total da tela */
+    height: 500px; /* Altura do banner (pode ser ajustada) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #00ff00; /* Texto verde estilo Matrix */
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    z-index: 2; /* Fica acima do fundo animado */
+    overflow: hidden; /* Impede que as partículas saiam do banner */
+  }
+  
+  /* Estilo do botão */
+  .banner-button {
+    margin-top: 20px; /* Espaço entre o texto e o botão */
+    padding: 10px 20px;
+    background-color: #00ff00;
+    color: #000;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Transição suave para o efeito hover */
+  }
+  
+  /* Efeito hover no botão */
+  .banner-button:hover {
+    background-color: #008000; /* Efeito hover */
+  }
+  
+  
+  
+  
