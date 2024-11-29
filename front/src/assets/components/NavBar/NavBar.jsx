@@ -40,7 +40,7 @@ function NavBar() {
         </ul>
 
         <button className="theme-toggle" onClick={toggleTheme}>
-          {isDarkMode ? '🌞' : '🌙'} 
+          {isDarkMode ? '🌙' : '🌞'} 
         </button>
 
         <button
