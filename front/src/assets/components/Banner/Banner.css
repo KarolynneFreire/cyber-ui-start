@@ -1,39 +1,32 @@
 /* Container do banner */
 .banner-container {
   position: relative;
-  width: 100%; /* Largura total da tela */
-  height: 500px; /* Altura do banner (pode ser ajustada) */
+  width: 100%; 
+  height: 500px; 
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #00ff00; /* Texto verde estilo Matrix */
+  color: #00ff00; 
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   text-align: center;
-  z-index: 2; /* Fica acima do fundo animado */
-  overflow: hidden; /* Impede que as partículas saiam do banner */
+  z-index: 2; 
+  overflow: hidden; 
+  background-image: url('https://img.freepik.com/vetores-gratis/fundo-brilhante-de-numeros-binarios-digitais-verdes_1017-37271.jpg?t=st=1732916426~exp=1732920026~hmac=7d6132ed66cf4279da0bd13637038b2f7ba9bfc2eea42396b660259a9aa36d7e&w=740'); /* Substitua pelo caminho da sua imagem */
+  background-size: cover;
+  background-position: center; 
+  background-repeat: no-repeat; 
 }
 
-.banner-content{
-margin-top: 150px;
-text-align: center;
+.banner-content {
+  margin-top: 150px;
+  text-align: center;
+  z-index: 3; 
 }
-
-/* Imagem do lado esquerdo */
-.banner-image {
-  position: absolute;
-  top: 130px;
-  left: 40px; /* Distância da borda esquerda */
-  bottom: 1px; /* Distância da borda inferior */
-  max-width: 600px; /* Ajuste para o tamanho da imagem */
-  height: 400px; /* Mantém a proporção */
-  z-index: 3; /* Acima do fundo animado */
-}
-
 
 /* Estilo do botão */
 .banner-button {
-  margin-top: 20px; /* Espaço entre o texto e o botão */
+  margin-top: 20px;
   padding: 10px 20px;
   background-color: #00ff00;
   color: #000;
@@ -41,10 +34,12 @@ text-align: center;
   font-size: 1.2rem;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s ease; /* Transição suave para o efeito hover */
+  transition: background-color 0.3s ease;
+  z-index: 4; 
 }
 
 /* Efeito hover no botão */
 .banner-button:hover {
-  background-color: #008000; /* Efeito hover */
+  background-color: #008000; 
 }
+

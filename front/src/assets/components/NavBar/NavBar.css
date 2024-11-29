@@ -1,13 +1,13 @@
 /* Modo Claro (light mode) */
 body.light {
   background-color: #fff;
-  color: #000;
+  color: black;
 }
 
 /* Modo Escuro (dark mode) */
 body.dark-mode {
-  background-color: #1e1e1e; /* Cor de fundo escuro */
-  color: #fff; /* Cor de texto claro */
+  background-color: #1e1e1e; 
+  color: #fff; 
 }
 
 .navbar {

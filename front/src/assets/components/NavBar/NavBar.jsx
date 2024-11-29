@@ -28,9 +28,6 @@ function NavBar() {
   return (
     <nav className={`navbar ${isDarkMode ? 'dark' : 'light'}`}>
       <div className="navbar-container">
-        {/* <div className="logo">
-          <h1>Logo</h1>
-        </div> */}
 
         <ul className={`nav-links ${menuActive ? 'active' : ''}`}>
           <li>
