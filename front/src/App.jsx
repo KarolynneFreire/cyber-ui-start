@@ -1,13 +1,11 @@
-import React from "react";
-import Home from "./assets/pag/Home/Home";
-import LoginSignup from './assets/pag/LoginSignup/LoginSignup';
-
+import Router from './routes/routes.jsx';
+import './styles/global.css';
 
 function App() {
   return (
-    <div>
-          <LoginSignup></LoginSignup>
-    </div>
+    <>
+      <Router/>
+    </>
   );
 }
 

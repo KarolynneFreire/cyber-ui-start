@@ -1,0 +1,10 @@
+:root {
+    --primary-color: #021327;
+    --secondary-color: linear-gradient(to bottom, #03162B, #010810);
+    --third-color: linear-gradient(to right, #0C6DC8, #357832);
+    --third-reverse-color: linear-gradient(to right, #357832, #0C6DC8);
+    --form-color: #0A131E;
+    --text-color: #FFFFFF;
+    --text-opactity-color: #A7A7A7;
+    --input-color: #08101A;
+}
