@@ -1,5 +1,32 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import '../../utils/variables.css';
+
+export const giltch = keyframes`
+    0%, 100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    }
+    10% {
+    opacity: 0.8;
+    clip-path: inset(10% 0 20% 0);
+    }
+    20% {
+    opacity: 0.6;
+    transform: scaleX(1.02);
+    }
+    30% {
+    opacity: 0.9;
+    transform: scaleX(0.98);
+    }
+    50% {
+    opacity: 0.4;
+    }
+    70% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: scaleX(1);
+    }
+`
 
 export const NavBarContainer = styled.header`
     /* border: red solid 1px; */
@@ -25,9 +52,10 @@ export const NavBarContent = styled.div`
 export const Logo = styled.h1`
     /* border: red solid 1px; */
     font-size: 1.8rem;
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-color);
+    font-family: "Rubik Glitch", system-ui;
     font-weight: 400;
+    color: var(--text-color);
+    animation: ${giltch} 5s ease-in-out infinite alternate;
 
 `
 

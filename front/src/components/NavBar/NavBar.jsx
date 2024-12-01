@@ -1,21 +1,24 @@
 import { NavBarContainer, NavBarContent, Logo, Navigation, BtnLogin, BtnSignup } from './NavBar.styles'
+import PropTypes from 'prop-types'
 
-const NavBar = () => {
+const NavBar = ({ onNavClick }) => {
   return (
     <>
     <NavBarContainer>
       <NavBarContent>
           <Logo>CYBER</Logo>
           <Navigation>
-            <BtnLogin>Entrar</BtnLogin>
-            <BtnSignup>Catastre-se</BtnSignup>
+            <BtnLogin onClick={() => onNavClick('login')}>Entrar</BtnLogin>
+            <BtnSignup onClick={() => onNavClick('signup')}>Catastre-se</BtnSignup>
             </Navigation>
       </NavBarContent>
     </NavBarContainer>
-    {/* <h2>NavBar</h2>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime enim aspernatur et earum possimus porro iure voluptatum commodi molestias! Itaque, illum et! Impedit delectus aperiam deserunt laborum consequatur nulla nam! */}
     </>
   );
 };
+
+NavBar.propTypes = {
+  onNavClick: PropTypes.func.isRequired,
+}
 
 export default NavBar;
