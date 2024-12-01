@@ -6,4 +6,8 @@ export const Bg = styled.div`
     align-items: center;
     background-image: var(--secondary-color);
     width: 100%;
+
+    @media (max-width: 374px) {
+        display: none;
+    }
 `
