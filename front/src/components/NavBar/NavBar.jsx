@@ -1,14 +1,19 @@
 import { NavBarContainer, NavBarContent, Logo, Navigation, BtnLogin, BtnSignup } from './NavBar.styles'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const NavBar = ({ onNavClick }) => {
   return (
     <>
     <NavBarContainer>
       <NavBarContent>
-          <Logo>CYBER</Logo>
+          <Link to="/">
+            <Logo>CYBER</Logo>
+          </Link>
           <Navigation>
-            <BtnLogin onClick={() => onNavClick('login')}>Entrar</BtnLogin>
+            <Link to='/login'>
+              <BtnLogin onClick={() => onNavClick('login')}>Entrar</BtnLogin>
+            </Link>
             <BtnSignup onClick={() => onNavClick('signup')}>Catastre-se</BtnSignup>
             </Navigation>
       </NavBarContent>

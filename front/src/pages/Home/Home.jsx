@@ -1,8 +1,18 @@
+import NavBar from "../../components/NavBar/NavBar";
+import { Bg } from "./Home.styles";
+import HeroSection from "./HeroSection/HeroSection";
+import MainSection from './MainSection/MainSection'
+import ResponseNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
+
 const Home = () => {
   return (
     <>
-      <h2>Home</h2>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi amet soluta aliquam qui cupiditate harum voluptate, beatae ducimus. Modi non maiores saepe iure tempore aperiam quae asperiores doloremque dolorem nihil?
+      <Bg>
+        <NavBar/>
+        <HeroSection/>
+        <MainSection/>
+      </Bg>
+      <ResponseNotAvailable/>
     </>
   );
 };
