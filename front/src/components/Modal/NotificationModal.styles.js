@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -39,9 +40,9 @@ export const CloseButton = styled.button`
 export const Title = styled.h2`
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  background: linear-gradient(to right, #0C6DC8, #357832);
-  -webkit-background-clip: text; /* Necessário para exibir o degradê apenas no texto */
-  color: transparent; /* Faz com que o texto mostre o degradê */
+  background: var(--third-color);
+  -webkit-background-clip: text; 
+  color: transparent; 
 `;
 
 export const EmailInfo = styled.p`
@@ -54,26 +55,31 @@ export const EmailInfo = styled.p`
   }
 `;
 
+
 export const CheckboxContainer = styled.div`
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  justify-content: center; /* Alinha o checkbox e o texto centralizados */
+  justify-content: center; 
 `;
 
+/**
+ * Estilo para o botão de confirmação.
+ * A cor de fundo do botão é condicional, dependendo se o botão está desabilitado. * 
+ * @param {boolean} disabled - Se o botão está desabilitado, altera a cor de fundo e o cursor.
+ */
 export const ConfirmButton = styled.button`
   background: ${({ disabled }) => (disabled ? "#cccccc" : "var(--secondary-color)")};
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   font-size: 1rem;
   transition: background-color 0.3s;
-
-
 `;
+
 
 export const ErrorMessage = styled.p`
   color: var(--text-opactity-color);
