@@ -4,8 +4,15 @@ import { useState } from "react";
 import { passwordYup } from "../../utils/validation";
 import FormComponent from "../../components/FormComponent/FormComponent";
 import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
+import NotificationModal from "../../components/Modal/NotificationModal";
+
 
 export const Login = () => {
+
+  const [isModalOpen, setModalOpen] = useState(true); // Controle do modal
+  const userEmail = "usuario@exemplo.com";
+
+
   const [isLogin, setIsLogin] = useState(true);
   const [userList, setUserList] = useState({});
 
@@ -105,6 +112,23 @@ export const Login = () => {
           <FormComponent formType="signup" onSubmit={handleSignupSubmit} />
         )}
       </Main>
+
+
+
+      <div>
+      {/* Botão para abrir o modal */}
+      <button onClick={() => setModalOpen(true)}>Abrir Modal</button>
+
+      {/* Modal */}
+      <NotificationModal
+        userEmail={userEmail}
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)} // Fecha o modal
+      />
+    </div>
+
+
+
     </>
   );
 };
