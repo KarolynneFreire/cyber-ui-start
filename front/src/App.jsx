@@ -1,15 +1,11 @@
-import React from "react";
-import AnimatedBackground from "./assets/components/AnimatedBackground/AnimatedBackground";
+import Router from './routes/routes.jsx';
+import './styles/global.css';
 
 function App() {
   return (
-    <div>
-      <AnimatedBackground />
-      {/* Conteúdo do site */}
-      <div style={{ position: "relative", zIndex: 2, color: "#fff" }}>
-        <h1>Bem-vindo ao meu site!</h1>
-      </div>
-    </div>
+    <>
+      <Router/>
+    </>
   );
 }
 
