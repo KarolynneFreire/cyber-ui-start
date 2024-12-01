@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const NavBar = ({ onNavClick }) => {
   return (
     <>
-    <NavBarContainer>
+    <NavBarContainer id='home'>
       <NavBarContent>
           <Link to="/">
             <Logo>CYBER</Logo>

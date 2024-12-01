@@ -40,3 +40,24 @@ export const BtnVerifiedStyled = styled.button`
         background-color: red;
     }
 `
+
+export const TalkToUsStyled = styled.button`
+    height: 50px;
+    width: 100%;
+    max-width: 200px;
+    padding: 0.75rem;
+    background-image: var(--third-color);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+
+    cursor: pointer;
+    transition: background-color 0.4s ease-in-out;
+
+    &:hover {
+        background-color: red;
+    }
+`
