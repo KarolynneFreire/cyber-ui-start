@@ -45,7 +45,12 @@ export const Form = styled.form`
         }
     }
 
-  button {
+  div {
+    margin-bottom: 1.5rem;
+  }
+`
+
+export const Btn = styled.button`
   display: block;
   height: 50px;
   width: 100%;
@@ -62,11 +67,6 @@ export const Form = styled.form`
 
   &:hover {
     background-color: red;
-  }
-}
-
-  div {
-    margin-bottom: 1.5rem;
   }
 `
 

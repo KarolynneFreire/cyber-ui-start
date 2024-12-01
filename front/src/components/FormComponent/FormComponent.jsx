@@ -1,4 +1,4 @@
-import { Form, Required, OtherOptions, Line, Google, ImgGoogle } from "./FormComponent.styles";
+import { Form, Btn, Required, OtherOptions, Line, Google, ImgGoogle } from "./FormComponent.styles";
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import Images from '../../assets/images.jsx'
@@ -65,7 +65,7 @@ const FormComponent = ({ formType, onSubmit}) => {
             </Required>
           )}
 
-        <button type="submit">{isLogin ? "Entrar" : "Cadastrar"}</button>
+        <Btn type="submit">{isLogin ? "Entrar" : "Cadastrar"}</Btn>
 
         {isLogin && (
           <OtherOptions>

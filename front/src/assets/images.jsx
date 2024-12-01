@@ -6,6 +6,8 @@ import LinkedinLogo from './images/linkedin-logo.png';
 import Auth from './images/auth.png';
 import Lock from './images/lock.png';
 import Send from './images/send.png';
+import AboutUs from './images/about-us.png';
+import Link from './images/link.png';
 
 const Images = {
     GoogleLogo,
@@ -15,7 +17,9 @@ const Images = {
     LinkedinLogo,
     Auth,
     Lock,
-    Send
+    Send,
+    Link,
+    AboutUs
 };
 
 export default Images;

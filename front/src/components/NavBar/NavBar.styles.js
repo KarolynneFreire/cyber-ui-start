@@ -56,12 +56,13 @@ export const Logo = styled.h1`
     font-weight: 400;
     color: var(--text-color);
     animation: ${giltch} 5s ease-in-out infinite alternate;
-
+    cursor: pointer;
 `
 
 export const Navigation = styled.nav`
     /* border: red solid 1px; */
     display: flex;
+    align-items: center;
     gap: 5px;
 `
 
