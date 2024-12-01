@@ -113,22 +113,6 @@ export const Login = () => {
         )}
       </Main>
 
-
-
-      <div>
-      {/* Botão para abrir o modal */}
-      <button onClick={() => setModalOpen(true)}>Abrir Modal</button>
-
-      {/* Modal */}
-      <NotificationModal
-        userEmail={userEmail}
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)} // Fecha o modal
-      />
-    </div>
-
-
-
     </>
   );
 };

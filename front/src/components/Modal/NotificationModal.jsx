@@ -20,6 +20,21 @@ import {
  * @param {function} props.onClose - Função para fechar o modal.
  */
 
+// colocar na pagina que vai chamar o componente e remover assim que adicionado
+//  <div>
+//  Botão para abrir o modal
+//  <button onClick={() => setModalOpen(true)}>Abrir Modal</button>
+
+//  Modal
+//  <NotificationModal
+//    userEmail={userEmail}
+//    isOpen={isModalOpen}
+//    onClose={() => setModalOpen(false)} // Fecha o modal
+//  />
+// </div>
+
+
+
 const NotificationModal = ({ userEmail, isOpen, onClose }) => {
 
   const [isChecked, setIsChecked] = useState(false);
