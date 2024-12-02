@@ -35,20 +35,3 @@ export const errorToast = (message) => {
       theme: "dark",
     });
 }
-
-export const rideAcceptToast = (message) => {
-    toast.success(message, {
-      autoClose: 2500,
-      hideProgressBar: true, // timer
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      className: "custom-toast-success",
-      style: {
-        backgroundColor: "#3D4A6A",
-        color: "#fff",
-    }})
-
-}

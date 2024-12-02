@@ -9,7 +9,7 @@ import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/Reso
 import { sucessToast, errorToast } from "../../utils/toastify";
 import { LoadingSpin } from "../../components/LoadingComponent/LoadingComponent";
 
-export const Login = () => {
+export const Signup = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,7 +56,7 @@ export const Login = () => {
 
     if (!data.nome || !data.email || !data.senha) {
       setIsLoading(false);
-      errorToast('Preencha todos os campos necessários!');
+      errorToast('Por favor, preencha todos os campos necessários!');
       return;
     }
 
@@ -107,5 +107,4 @@ export const Login = () => {
   );
 };
 
-export default Login;
-
+export default Signup;
