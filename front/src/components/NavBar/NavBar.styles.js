@@ -41,7 +41,7 @@ export const NavBarContainer = styled.header`
 export const NavBarContent = styled.div`
     /* border: red solid 1px; */
     max-width: 1280px;
-    width: 100%;
+    width: 100vw;
     height: 80px;
     margin: 0 auto;
     display: flex;
