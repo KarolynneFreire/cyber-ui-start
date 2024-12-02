@@ -4,14 +4,12 @@ import { toast } from 'react-toastify'
 export const sucessToast = (message) => {
     toast.success(message, {
       autoClose: 2000,
-      hideProgressBar: true, // timer
-    //   closeOnClick: true,
-    //   pauseOnHover: false,
+      hideProgressBar: true,
       draggable: true,
       progress: undefined,
       theme: "dark",
       progressStyle: {
-        backgroundColor: "#007BFF", // cor da barrinha
+        backgroundColor: "#007BFF",
       },
       className: "custom-toast-success",
       style: {
@@ -27,28 +25,11 @@ export const sucessToast = (message) => {
 export const errorToast = (message) => {
     toast.error(message, {
       autoClose: 2500,
-      hideProgressBar: true, // timer
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: false,
       progress: undefined,
       theme: "dark",
     });
-}
-
-export const rideAcceptToast = (message) => {
-    toast.success(message, {
-      autoClose: 2500,
-      hideProgressBar: true, // timer
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      className: "custom-toast-success",
-      style: {
-        backgroundColor: "#3D4A6A",
-        color: "#fff",
-    }})
-
 }

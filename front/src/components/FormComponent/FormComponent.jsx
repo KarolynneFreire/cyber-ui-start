@@ -5,6 +5,7 @@ import Images from "../../assets/images.jsx";
 import "../../styles/global.css";
 import 'boxicons/css/boxicons.min.css';
 import { LoadingSpin } from "../LoadingComponent/LoadingComponent";
+import { errorToast } from "../../utils/toastify";
 
 const FormComponent = ({ formType, onSubmit, isLoading }) => {
   const isLogin = formType === "login";
@@ -38,8 +39,34 @@ const FormComponent = ({ formType, onSubmit, isLoading }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (!isLoading) {
-      await onSubmit(e);
+    if (!isLogin) {
+      if (
+        senhaRequired.length &&
+        senhaRequired.uppercase &&
+        senhaRequired.lowercase &&
+        senhaRequired.number &&
+        senhaRequired.special
+      ) {
+        if (!isLoading) {
+          try {
+            await onSubmit(e);
+          } catch (error) {
+            errorToast(error);
+            console.error('Erro ao cadastrar:', error);
+          }
+        }
+      } else {
+        errorToast("A senha não atende aos requisitos");
+      }
+    } else {
+      if (!isLoading) {
+        try {
+          await onSubmit(e);
+        } catch (error) {
+          errorToast(error);
+          console.error('Erro ao logar:', error);
+        }
+      }
     }
   };
 

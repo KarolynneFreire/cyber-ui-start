@@ -6,14 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { passwordYup } from "../../utils/validation";
 import FormComponent from "../../components/FormComponent/FormComponent";
 import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
-import NotificationModal from "../../components/Modal/NotificationModal";
 import { sucessToast, errorToast } from "../../utils/toastify";
 import { LoadingSpin } from "../../components/LoadingComponent/LoadingComponent";
 
-export const Login = () => {
-  const [isModalOpen, setModalOpen] = useState(true); // Controle do modal
-  const userEmail = "usuario@exemplo.com";
-
+export const Signup = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -42,7 +38,6 @@ export const Login = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
-      navigate('/');
       sucessToast('Finally');
     }
   };
@@ -61,7 +56,7 @@ export const Login = () => {
 
     if (!data.nome || !data.email || !data.senha) {
       setIsLoading(false);
-      errorToast('Preencha todos os campos necessários!');
+      errorToast('Por favor, preencha todos os campos necessários!');
       return;
     }
 
@@ -108,10 +103,8 @@ export const Login = () => {
           />
         )}
       </Main>
-
     </>
   );
 };
 
-export default Login;
-
+export default Signup;
