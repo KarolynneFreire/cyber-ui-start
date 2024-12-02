@@ -42,6 +42,7 @@ export const Login = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
+      navigate('/');
       sucessToast('Finally');
     }
   };

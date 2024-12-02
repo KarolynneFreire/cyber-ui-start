@@ -16,10 +16,12 @@ const HeroSection = () => {
   return (
     <>
       <Main>
-      <LoadingComponentInitial isLoading={isLoading} />
-          <Legend>◦ Lorem ipsum sit dolor</Legend>
-        <Title>Lorem ipsum sit <br /> dolor <span>amet?</span></Title>
-        <BtnFindOutMore/>
+      <Content>
+        <LoadingComponentInitial isLoading={isLoading} />
+            <Legend>◦ Lorem ipsum sit dolor</Legend>
+          <Title>Lorem ipsum sit <br /> dolor <span>amet?</span></Title>
+          <BtnFindOutMore/>
+      </Content>
       </Main>
     </>
   );
