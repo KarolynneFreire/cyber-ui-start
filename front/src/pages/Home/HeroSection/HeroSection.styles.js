@@ -16,7 +16,6 @@ export const Main = styled.main`
     background-position: center; 
     background-repeat: no-repeat; 
     
-
     @media (max-width: 768px) {
         background-image: linear-gradient(
             rgba(255, 255, 255, 0.4), /* Gradiente branco translúcido */
