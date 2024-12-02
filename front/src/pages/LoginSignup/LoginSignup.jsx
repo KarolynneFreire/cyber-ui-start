@@ -1,92 +1,79 @@
 import NavBar from "../../components/NavBar/NavBar";
 import { Main } from "./LoginSignup.styles";
 import { useState } from "react";
+import { api } from '../../config/axios'
+import { useNavigate } from "react-router-dom";
 import { passwordYup } from "../../utils/validation";
 import FormComponent from "../../components/FormComponent/FormComponent";
 import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
+import { sucessToast, errorToast } from "../../utils/toastify";
+import { LoadingSpin } from "../../components/LoadingComponent/LoadingComponent";
 
 export const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [userList, setUserList] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const formData = new FormData(e.target);
     const data = {
       email: formData.get("email"),
-      password: formData.get("password"),
+      senha: formData.get("senha"),
     };
-    console.log('dados (login):', data);
-    
-    // so pra testar o login
-    if (!userList[data.email]) {
-      console.log("Usuário não encontrado para login.");
-    } else {
-      console.log("Usuário encontrado:", userList[data.email]);
+    // console.log('dados (login):', data);
+
+    try {
+      const response = await api.post('/v1/api/login', data);
+      // console.log(response.data);
+      sucessToast('Login efetuado com sucesso!');
+      navigate('/');
+    } catch (error) {
+      errorToast(error);
+      console.error('Erro ao logar:', error);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+      sucessToast('Finally');
     }
-  }
-  //   try {
-  //     const response = await axios.post('/', data);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error('Erro ao logar:', error);
-  //   } finally {
-  //     console.log('finalizado');
-  //   }
-  // };
+  };
 
   const handleSignupSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
-    const formData = new FormData(e.target)
+    const formData = new FormData(e.target);
     const data = {
-      name: formData.get("name"),
+      nome: formData.get("nome"),
       email: formData.get("email"),
-      password: formData.get("password"),
+      senha: formData.get("senha"),
     };
-    console.log("Dados cadastrados:", data)
+    // console.log("Dados cadastrados:", data);
 
     try {
-      await passwordYup.validate(data.password);
-
-      if (userList[data.email]) {
-        console.log("Erro: Usuário já cadastrado.")
-        alert("Erro: Usuário já cadastrado.")
-        resetForm()
-        return
-      }
-
-      setUserList((prevUserList) => ({
-        ...prevUserList,
-        [data.email]: data,
-      }));
-
-      console.log("Usuário cadastrado com sucesso:", data);
-      alert("Cadastro realizado com sucesso!");
-      resetForm()
-      setIsLogin(true);
+      const response = await api.post('/v1/api/usuarios', data);
+      passwordYup.validate(data.senha);
+      sucessToast('Cadastro realizado!');
+      // console.log('Cadastro:', response.data);
+      navigate('/');
     } catch (error) {
-      console.error("Erro ao cadastrar:", error);
-      resetForm()
+      errorToast(error);
+      console.error('Erro ao cadastrar:', error);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+      sucessToast('Finally');
     }
-
-
-    
   };
-  //   try {
-  //     const response = await axios.post('/http://127.0.0.1:8000/v1/api/usuarios/', data);
-  //     console.log('Cadastro:', response.data);
-  //   } catch (error) {
-  //     console.error('Erro ao cadastrar:', error);
-  //   } finally {
-  //     console.log('finalizado');
-  //   }
-  // };
 
   const handleNavClick = (formType) => {
     setIsLogin(formType === "login");
-    resetForm()
+    resetForm();
   };
 
   const resetForm = () => {
@@ -99,10 +86,14 @@ export const Login = () => {
       <ResolutionNotAvailable />
       <NavBar onNavClick={handleNavClick} />
       <Main>
-        {isLogin ? (
-          <FormComponent formType="login" onSubmit={handleLoginSubmit} />
+        {isLoading ? (
+          <LoadingSpin />
         ) : (
-          <FormComponent formType="signup" onSubmit={handleSignupSubmit} />
+          <FormComponent
+            formType={isLogin ? "login" : "signup"}
+            onSubmit={isLogin ? handleLoginSubmit : handleSignupSubmit}
+            isLoading={isLoading}
+          />
         )}
       </Main>
     </>
@@ -110,3 +101,4 @@ export const Login = () => {
 };
 
 export default Login;
+

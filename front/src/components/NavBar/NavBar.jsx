@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 const NavBar = ({ onNavClick }) => {
+
   return (
     <>
     <NavBarContainer id='home'>
@@ -11,10 +12,11 @@ const NavBar = ({ onNavClick }) => {
             <Logo>CYBER</Logo>
           </Link>
           <Navigation>
-            <Link to='/login'>
+              <Link to='/login'>
               <BtnLogin onClick={() => onNavClick('login')}>Entrar</BtnLogin>
             </Link>
             <BtnSignup onClick={() => onNavClick('signup')}>Catastre-se</BtnSignup>
+            
             </Navigation>
       </NavBarContent>
     </NavBarContainer>
