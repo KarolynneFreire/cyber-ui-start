@@ -1,4 +1,3 @@
-// src/utils/validationSchemas.js
 import * as yup from 'yup';
 
 export const passwordYup = yup.string()

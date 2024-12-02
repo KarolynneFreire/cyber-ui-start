@@ -5,8 +5,8 @@ export const Form = styled.form`
   font-family: 'Poppins', sans-serif;
   border-radius: 4px;
   padding: 2rem;
-  max-width: 550px;
-  margin: 0 auto;
+  max-width: 500px;
+  width: 100%;
   color: #fff;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 8px 0px;
   font-family: "Sen", sans-serif;
@@ -29,7 +29,7 @@ export const Form = styled.form`
 
   input {
     width: 100%;
-    padding: 1.2rem;
+    padding: 1.2rem 3.5rem 1.2rem 1.2rem ;
     margin-bottom: 1.5rem;
     border-radius: 4px;
     border: 2px solid transparent;
@@ -39,10 +39,12 @@ export const Form = styled.form`
     outline: none;
     transition: border-image .4s ease-in-out;
 
+    
         &:focus {
         border-image: var(--third-color);
         border-image-slice: 1;
         }
+
     }
 
   div {
@@ -68,6 +70,15 @@ export const Btn = styled.button`
   &:hover {
     background-color: red;
   }
+`
+
+export const IconVisible = styled.i`
+  /* border: red solid; */
+  font-size: 30px;
+  color: var(--iconVisible-color);
+  margin-right: 10px;
+  margin-bottom: 50%;
+  cursor: pointer;
 `
 
 export const Required = styled.ul`
