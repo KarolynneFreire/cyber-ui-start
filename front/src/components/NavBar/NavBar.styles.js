@@ -91,3 +91,13 @@ export const BtnSignup = styled.button`
         transition: 0.3s ease-in-out;
     }
 `
+
+export const IconProfile = styled.div`
+    /* border: red solid 1px; */
+    
+    & img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+`

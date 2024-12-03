@@ -30,10 +30,14 @@ export const Login = () => {
       const response = await api.post('v1/api/login', data);
       // console.log(response.data);
       sucessToast('Login efetuado com sucesso!');
+      const token = response.data.avatar;
+      localStorage.setItem('token', token);
       navigate('/');
+
     } catch (error) {
       errorToast(error);
       console.error('Erro ao logar:', error);
+
     } finally {
       setTimeout(() => {
         setIsLoading(false);

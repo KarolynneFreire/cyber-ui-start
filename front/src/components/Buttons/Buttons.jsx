@@ -13,11 +13,24 @@ const BtnFindOutMore = () => {
 };
 
 export const BtnVerified = () => {
+
+  const token = localStorage.getItem('token');
+
   return (
     <>
-      <Link to='/rota-de-verificacao'>
+      {!token ? (
+            <>
+            <Link to='/login'>
         <BtnVerifiedStyled>Verificar</BtnVerifiedStyled>
       </Link>
+            </>
+          ) : (
+            <>
+              <Link to='/tela-de-Edberto'>
+                <BtnVerifiedStyled>Verificar</BtnVerifiedStyled>
+            </Link>
+            </>
+          )}
     </>
   );
 };
