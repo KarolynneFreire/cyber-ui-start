@@ -27,7 +27,7 @@ export const Login = () => {
     // console.log('dados (login):', data);
 
     try {
-      const response = await api.post('/v1/api/login', data);
+      const response = await api.post('v1/api/login', data);
       // console.log(response.data);
       sucessToast('Login efetuado com sucesso!');
       navigate('/');
@@ -63,10 +63,9 @@ export const Login = () => {
     try {
       await passwordYup.validate(data.senha);
 
-      const response = await api.post('/v1/api/usuarios', data);
+      const response = await api.post('v1/api/usuarios', data);
       sucessToast('Cadastro realizado!');
       // console.log('Cadastro:', response.data);
-      navigate('/');
     } catch (error) {
       errorToast(error);
       console.error('Erro ao cadastrar:', error);
