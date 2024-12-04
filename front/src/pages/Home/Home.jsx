@@ -7,7 +7,8 @@ import Footer from "../../components/Footer/Footer";
 import AnimatedStats from "./AnimatedStats/AnimatedStats.jsx";
 import TipsComponent from './TipsComponent/TipsComponent';
 import SecurityQuiz from './SecurityQuiz/SecurityQuiz';
-
+import BannerContainer from "../../components/Banner/Banners";
+import { BannerTeam } from "../../components/Banner/Banners";
 
 const Home = () => {
   return (
@@ -15,10 +16,12 @@ const Home = () => {
       <Bg>
         <NavBar/>
         <HeroSection/>
+        <BannerContainer/>
         <MainSection/>
         <AnimatedStats/>
         <TipsComponent/>
         <SecurityQuiz/>
+        <BannerTeam/>
         <Footer/>
       </Bg>
       <ResponseNotAvailable/>

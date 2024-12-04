@@ -8,6 +8,8 @@ import Lock from './images/lock.png';
 import Send from './images/send.png';
 import AboutUs from './images/about-us.png';
 import Link from './images/link.png';
+import Team from './images/team.png';
+import Photo from './images/photo.jpg';
 
 const Images = {
     GoogleLogo,
@@ -19,7 +21,9 @@ const Images = {
     Lock,
     Send,
     Link,
-    AboutUs
+    AboutUs,
+    Team,
+    Photo
 };
 
 export default Images;

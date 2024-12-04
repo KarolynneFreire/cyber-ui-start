@@ -42,8 +42,6 @@ export const Legend = styled.p`
     color: var(--fiveth-color);
     font-size: 1rem;
     font-weight: 600;
-    z-index: 2;
-
     
 @media (max-width: 768px) {
     font-size: 0.875rem; 

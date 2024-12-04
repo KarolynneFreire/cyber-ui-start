@@ -61,3 +61,25 @@ export const TalkToUsStyled = styled.button`
         background-color: red;
     }
 `
+
+export const BtnExploreTeamStyled = styled.button`
+    height: 50px;
+    width: 100%;
+    max-width: 190px;
+    padding: 0.75rem;
+    background-color: transparent;
+    border: var(--text-color) solid 1px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+
+    cursor: pointer;
+    transition: background-color 0.4s ease-in-out;
+
+    &:hover {
+        background-color: #5C9698;
+    }
+`
+

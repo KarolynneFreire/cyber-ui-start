@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Section = styled.section`
     background-color: var(--bg-color);
     width: 100%;
-    height: auto;
+    /* height: auto; */
     display: flex;
     justify-content: center;
 
@@ -15,7 +15,7 @@ export const SectionContent = styled.div`
     /* border: red solid 1px; */
     display: flex;
     align-items: center;
-    padding-top: 3rem;
+    margin-top: 110px;
     gap: 30px;
 `
 
