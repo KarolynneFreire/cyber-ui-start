@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "proxy": "http://127.0.0.1:8000",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -22,6 +23,7 @@
     "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.6",
     "react-typing-effect": "^2.0.5",
+    "react-vertical-timeline-component": "^3.6.0",
     "styled-components": "^6.1.13",
     "yup": "^1.4.0"
   },
