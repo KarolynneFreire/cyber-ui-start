@@ -50,7 +50,7 @@ export const TalkToUs = () => {
 export const BtnExploreTeam = () => {
   return (
     <>
-      <Link to='/team'>
+      <Link to='/explore-team'>
         <BtnExploreTeamStyled>Explorar</BtnExploreTeamStyled>
       </Link>
     </>
