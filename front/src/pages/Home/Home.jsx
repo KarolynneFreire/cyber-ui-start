@@ -5,6 +5,7 @@ import MainSection from './MainSection/MainSection'
 import ResponseNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
 import Footer from "../../components/Footer/Footer";
 import AnimatedStats from "./AnimatedStats/AnimatedStats.jsx";
+import TipsComponent from './TipsComponent/TipsComponent';
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         <HeroSection/>
         <MainSection/>
         <AnimatedStats/>
+        <TipsComponent/>
         <Footer/>
       </Bg>
       <ResponseNotAvailable/>
