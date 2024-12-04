@@ -6,6 +6,7 @@ import ResponseNotAvailable from "../../components/ResolutionNotAvailable/Resolu
 import Footer from "../../components/Footer/Footer";
 import AnimatedStats from "./AnimatedStats/AnimatedStats.jsx";
 import TipsComponent from './TipsComponent/TipsComponent';
+import SecurityQuiz from './SecurityQuiz/SecurityQuiz';
 
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
         <MainSection/>
         <AnimatedStats/>
         <TipsComponent/>
+        <SecurityQuiz/>
         <Footer/>
       </Bg>
       <ResponseNotAvailable/>
