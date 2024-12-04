@@ -4,6 +4,8 @@ import HeroSection from "./HeroSection/HeroSection";
 import MainSection from './MainSection/MainSection'
 import ResponseNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
 import Footer from "../../components/Footer/Footer";
+import BannerContainer from "../../components/Banner/Banners";
+import { BannerTeam } from "../../components/Banner/Banners";
 
 const Home = () => {
   return (
@@ -11,7 +13,9 @@ const Home = () => {
       <Bg>
         <NavBar/>
         <HeroSection/>
+        <BannerContainer/>
         <MainSection/>
+        <BannerTeam/>
         <Footer/>
       </Bg>
       <ResponseNotAvailable/>
