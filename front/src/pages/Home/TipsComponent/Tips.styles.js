@@ -7,7 +7,13 @@ export const CarouselWrapper = styled.div`
   margin: 0 auto;
   overflow: hidden;
   position: relative;
+  margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    max-width: 100%; /* Permite mais flexibilidade em telas menores */
+  }
 `;
+
 
 // Faixa do carrossel
 export const CarouselTrack = styled.div`
@@ -17,7 +23,26 @@ export const CarouselTrack = styled.div`
     ${(props) => `-${props.currentIndex * (100 / props.visibleCards)}%`}
   );
   width: ${(props) => `${(props.visibleCards / props.visibleCards) * 100}%`};
+
+  @media (max-width: 1024px) {
+    transform: translateX(
+      ${(props) => `-${props.currentIndex * (100 / 3)}%`}
+    );
+  }
+
+  @media (max-width: 768px) {
+    transform: translateX(
+      ${(props) => `-${props.currentIndex * (100 / 2)}%`}
+    );
+  }
+
+  @media (max-width: 480px) {
+    transform: translateX(
+      ${(props) => `-${props.currentIndex * 100}%`}
+    );
+  }
 `;
+
 
 // Slide do carrossel
 export const CarouselSlide = styled.div`
@@ -25,6 +50,18 @@ export const CarouselSlide = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 1024px) {
+    flex: 0 0 ${(props) => `calc(100% / 3)`}; /* Mostra 3 cards */
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 ${(props) => `calc(100% / 2)`}; /* Mostra 2 cards */
+  }
+
+  @media (max-width: 480px) {
+    flex: 0 0 100%; /* Mostra 1 card */
+  }
 `;
 
 // Card com dicas
@@ -62,11 +99,19 @@ export const TipCard = styled.div`
 
 // Título do card
 export const TipTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-bottom: 10px;
   background: var(--third-color);
   -webkit-background-clip: text;
   color: transparent;
+
+  @media (max-width: 768px) {
+    font-size: 1.0rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 // Descrição do card
@@ -76,6 +121,14 @@ export const TipDescription = styled.p`
   font-size: 0.9rem; /* Diminui o texto para ajustar */
   line-height: 1.4;
   flex-grow: 1;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.7rem;
+  }
 `;
 
 // Controles do carrossel
