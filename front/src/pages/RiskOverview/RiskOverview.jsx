@@ -7,6 +7,7 @@ import {
   TitleGroup,
   ModalBack,
   ModalRiskOverview,
+  ModalCloseBtn,
 } from "./RiskOverview.style";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -25,8 +26,7 @@ export const RiskOverview = () => {
 
   useEffect(() => {
     const url =
-      "http://127.0.0.1:8000/v1/api/vazamentos/procurar/rodrigofelixferreira%40hotmail.com";
-      //"http://127.0.0.1:8000/v1/api/vazamentos/procurar/hiroshiakira60%40gmail.com";
+      "https://backend-osint.onrender.com/v1/api/vazamentos/procurar/rodrigofelixferreira%40hotmail.com";
 
     axios
       .get(url)
@@ -49,13 +49,13 @@ export const RiskOverview = () => {
   }
 
   const handleOpenModal = (item) => {
-    setModalData(item); 
-    setIsModalOpen(true); 
+    setModalData(item);
+    setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); 
-    setModalData(null); 
+    setIsModalOpen(false);
+    setModalData(null);
   };
 
   return (
@@ -91,16 +91,40 @@ export const RiskOverview = () => {
         {isModalOpen && modalData && (
           <ModalRiskOverview>
             <h2>Detalhes do Vazamento</h2>
-            <p><strong>Nome:</strong> {modalData.nome}</p>
-            <p><strong>Titulo:</strong> {modalData.titulo}</p>
-            <p><strong>Domínio:</strong> {modalData.dominio_url}</p>
-            <p><strong>Data de Vazamento:</strong> {modalData.data_vazamento}</p>
-            <p><strong>Data de Atualização:</strong> {modalData.data_atualizacao}</p>
-            <p><strong>Descricao:</strong> {modalData.descricao}</p>
-            <button onClick={handleCloseModal}>Fechar</button>
+            <p>
+              <strong>Nome:</strong> {modalData.nome}
+            </p>
+            <p>
+              <strong>Titulo:</strong> {modalData.titulo}
+            </p>
+            <p>
+              <strong>Domínio:</strong> {modalData.dominio_url}
+            </p>
+            <p>
+              <strong>Data de Vazamento:</strong> {modalData.data_vazamento}
+            </p>
+            <p>
+              <strong>Data de Atualização:</strong> {modalData.data_atualizacao}
+            </p>
+            <p>
+              <strong>Descricao:</strong> {modalData.descricao}
+            </p>
+            <p>
+              <strong>Dados Vazados:</strong>
+            </p>
+            <ul>
+              {modalData.data_classes && modalData.data_classes.length > 0 ? (
+                modalData.data_classes.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))
+              ) : (
+                <li>Nenhum dado disponível</li>
+              )}
+            </ul>
+            <ModalCloseBtn onClick={handleCloseModal}>Fechar</ModalCloseBtn>
           </ModalRiskOverview>
         )}
-        {isModalOpen && (<ModalBack onClick={handleCloseModal}/>)}
+        {isModalOpen && <ModalBack onClick={handleCloseModal} />}
       </Main>
     </>
   );

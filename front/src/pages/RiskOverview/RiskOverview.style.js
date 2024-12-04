@@ -51,11 +51,14 @@ export const ModalRiskOverview = styled.div`
   padding: 3%;
   border-radius: 15px;
   z-index: 1000;
-  font-size: 1.5em;
   color: white;
-  border: 5px #0C6DC8 solid;
+  border: 5px #0c6dc8 solid;
+  height: 70%;
+  width: 60%;
+  font-size: 1.2em;
+  overflow: auto;
 
-  & h2{
+  & h2 {
     margin: 0% 0% 5% 0%;
     justify-self: center;
   }
@@ -71,3 +74,6 @@ export const ModalBack = styled.div`
   z-index: 999;
 `;
 
+export const ModalCloseBtn =styled.button`
+
+`
