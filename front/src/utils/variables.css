@@ -4,8 +4,12 @@
     --third-color: linear-gradient(to right, #0C6DC8, #357832);
     --third-reverse-color: linear-gradient(to top, #357832, #0C6DC8);
     --fourth-color: #357832;
+    --fiveth-color: #0C6DC8;
     --form-color: #0A131E;
     --text-color: #FFFFFF;
     --text-opactity-color: #A7A7A7;
     --input-color: #08101A;
+
+    --iconVisible-color: #141b24;
+    --bg-color: #08101A;
 }

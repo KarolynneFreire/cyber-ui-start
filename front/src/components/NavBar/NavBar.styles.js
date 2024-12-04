@@ -56,12 +56,13 @@ export const Logo = styled.h1`
     font-weight: 400;
     color: var(--text-color);
     animation: ${giltch} 5s ease-in-out infinite alternate;
-
+    cursor: pointer;
 `
 
 export const Navigation = styled.nav`
     /* border: red solid 1px; */
     display: flex;
+    align-items: center;
     gap: 5px;
 `
 
@@ -88,5 +89,15 @@ export const BtnSignup = styled.button`
     &:hover {
         background-image: var(--third-reverse-color);
         transition: 0.3s ease-in-out;
+    }
+`
+
+export const IconProfile = styled.div`
+    /* border: red solid 1px; */
+    
+    & img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
     }
 `

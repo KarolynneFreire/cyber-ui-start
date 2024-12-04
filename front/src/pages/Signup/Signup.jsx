@@ -6,14 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { passwordYup } from "../../utils/validation";
 import FormComponent from "../../components/FormComponent/FormComponent";
 import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
-import NotificationModal from "../../components/Modal/NotificationModal";
 import { sucessToast, errorToast } from "../../utils/toastify";
 import { LoadingSpin } from "../../components/LoadingComponent/LoadingComponent";
 
-export const Login = () => {
-  const [isModalOpen, setModalOpen] = useState(true); // Controle do modal
-  const userEmail = "usuario@exemplo.com";
-
+export const Signup = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,22 +27,17 @@ export const Login = () => {
     // console.log('dados (login):', data);
 
     try {
-      const response = await api.post('v1/api/login', data);
+      const response = await api.post('/v1/api/login', data);
       // console.log(response.data);
       sucessToast('Login efetuado com sucesso!');
-      const token = response.data.avatar;
-      localStorage.setItem('token', token);
       navigate('/');
-
     } catch (error) {
       errorToast(error);
       console.error('Erro ao logar:', error);
-
     } finally {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
-      navigate('/');
       sucessToast('Finally');
     }
   };
@@ -65,16 +56,17 @@ export const Login = () => {
 
     if (!data.nome || !data.email || !data.senha) {
       setIsLoading(false);
-      errorToast('Preencha todos os campos necessários!');
+      errorToast('Por favor, preencha todos os campos necessários!');
       return;
     }
 
     try {
       await passwordYup.validate(data.senha);
 
-      const response = await api.post('v1/api/usuarios', data);
+      const response = await api.post('/v1/api/usuarios', data);
       sucessToast('Cadastro realizado!');
       // console.log('Cadastro:', response.data);
+      navigate('/');
     } catch (error) {
       errorToast(error);
       console.error('Erro ao cadastrar:', error);
@@ -111,10 +103,8 @@ export const Login = () => {
           />
         )}
       </Main>
-
     </>
   );
 };
 
-export default Login;
-
+export default Signup;
