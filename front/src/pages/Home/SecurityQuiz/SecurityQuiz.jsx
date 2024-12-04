@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaShieldAlt, FaLock, FaExclamationTriangle, FaCheckCircle, FaTimesCircle, FaExclamationCircle } from 'react-icons/fa';
-import { QuizContainer, QuizCard, StartScreen, QuestionText, Answers, AnswerButton, Result, ResultText, Icon, QuizWrapper, ImageContainer } from './SecurityQuiz.styles';
+import { QuizContainer, QuizCard, StartScreen, QuestionText, Answers, AnswerButton, Result, ResultText, Icon, QuizWrapper, ImageContainer, ContentWrapper } from './SecurityQuiz.styles';
 import quizImage from './cadeado.png'; 
 
 const SecurityQuiz = () => {
@@ -82,7 +82,11 @@ const SecurityQuiz = () => {
 
   return (
     <QuizWrapper>
-     <ImageContainer>
+    <header>
+      <h1>Teste Sua Segurança Digital</h1> {/* Título principal da sessão */}
+    </header>
+    <ContentWrapper>
+      <ImageContainer>
         <img src={quizImage} alt="Quiz Illustration" />
       </ImageContainer>
       <QuizContainer>
@@ -90,8 +94,7 @@ const SecurityQuiz = () => {
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, ease: 'backOut' }}>
             <QuizCard>
               <StartScreen>
-                <h2>Teste Sua Segurança Digital</h2>
-                <p>Descubra se suas práticas digitais estão protegidas contra ameaças.</p>
+                <h2>Descubra se suas práticas digitais estão protegidas contra ameaças.</h2> {/* Título do quiz */}
                 <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={handleStartQuiz}>
                   Iniciar
                 </motion.button>
@@ -104,7 +107,7 @@ const SecurityQuiz = () => {
               <ResultText>{getResultIcon()} <br />
                 {getResultCategory() === 'ok' && 'Parabéns! Você está bem protegido!'}
                 {getResultCategory() === 'intermediary' && 'Você está no caminho certo, mas pode melhorar.'}
-                {getResultCategory() === 'bad' && 'Atenção! Suas práticas digitais apresentam riscos. Considere melhorá-las!'}
+                {getResultCategory() === 'bad' && 'Atenção! Suas práticas digitais apresentam riscos!'}
               </ResultText>
             </Result>
           </motion.div>
@@ -127,6 +130,7 @@ const SecurityQuiz = () => {
           </motion.div>
         )}
       </QuizContainer>
+      </ContentWrapper>
     </QuizWrapper>
   );
 };

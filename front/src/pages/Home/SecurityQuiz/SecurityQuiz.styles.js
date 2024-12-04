@@ -4,40 +4,58 @@ import { motion } from 'framer-motion';
 
 export const QuizWrapper = styled.div`
   max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+
+  header {
+    margin-bottom: 20px;
+
+    h1 {
+      font-size: 2.5rem;
+  color: var(--text-color);
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+    }
+  }
+`;
+
+export const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   gap: 20px;
-  margin-bottom: 25px;
 
+  @media (max-width: 768px) {
+    flex-direction: column; 
+  }
 `;
-
-
 export const QuizContainer = styled.div`
+  flex: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 50%;  // Ajuste o tamanho conforme necessário
   margin: 30px;
 `;
 
 export const ImageContainer = styled.div`
-  width: 50%;  // Ajuste o tamanho conforme necessário
+  flex: 1; /* Ajusta o tamanho proporcionalmente */
   display: flex;
   justify-content: center;
   align-items: center;
+
   img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px; // Para dar um efeito de borda arredondada, se necessário
+    border-radius: 8px;
   }
 `;
 
 
 export const QuizCard = styled.div`
-  background-color: white;
+background-color: var(--primary-color);
   width: 500px;
   height: 300px;
   padding: 20px;
@@ -50,7 +68,14 @@ export const QuizCard = styled.div`
 `;
 
 export const StartScreen = styled.div`
-  text-align: center;
+text-align: center;
+h2 {
+  font-size: 24px; 
+  margin-bottom: 20px;
+  background: var(--third-color);
+-webkit-background-clip: text; 
+color: transparent;
+}
   button {
     background-color: #007BFF;
     color: white;
@@ -73,9 +98,24 @@ export const StartScreen = styled.div`
 `;
 
 export const QuestionText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza ícones e texto */
   font-size: 18px;
   margin-bottom: 20px;
-`;
+
+  span {
+    margin-bottom: 10px; /* Espaço entre o ícone e o texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  p {
+    margin: 0;
+    text-align: center; /* Texto centralizado */
+    color: white;
+  }
+`;;
 
 export const Answers = styled.div`
   margin-top: 20px;
