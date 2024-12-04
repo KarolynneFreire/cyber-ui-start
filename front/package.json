@@ -12,15 +12,15 @@
   "dependencies": {
     "axios": "^1.7.8",
     "boxicons": "^2.1.4",
-    "framer-motion": "^11.12.0",
+    "framer-motion": "^11.13.1",
     "proptypes": "^1.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-router-dom": "^7.0.1",
-    "react-typed": "^2.0.12",
     "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.6",
+    "react-typed": "^2.0.12",
     "react-typing-effect": "^2.0.5",
     "styled-components": "^6.1.13",
     "yup": "^1.4.0"
