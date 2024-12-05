@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { CarouselWrapper, CarouselTrack, CarouselSlide, TipCard, TipTitle, TipDescription, Controls, Button, Title } from "./Tips.styles";
 
 const tips = [
-  { title: "Use Senhas Fortes", description: "Crie senhas complexas, com letras, números e caracteres especiais. Evite senhas simples como '123456' ou 'password'." },
-  { title: "Ative a Autenticação de Dois Fatores", description: "Sempre que possível, ative a autenticação de dois fatores." },
+  { title: "Faça Backup Regularmente", description: "Faça backups de seus arquivos mais importantes.Em caso de falha no sistema ou ataque de ransomware, você poderá restaurar seus dados." },
+  { title: "Desative Contas Antigas ou Inativas", description: "Se você não usa mais uma conta, desative-a. Isso ajuda a reduzir os pontos de acesso ao seu perfil e evita que pessoas mal-intencionadas usem contas esquecidas." },
   { title: "Cuidado com Phishing", description: "Desconfie de e-mails ou mensagens pedindo informações pessoais. Nunca clique em links desconhecidos." },
   { title: "Cuidado com Redes Wi-Fi Públicas", description: "Evite fazer transações sensíveis, como acessos bancários ou compras online, enquanto estiver conectado a uma rede Wi-Fi pública." },
   { title: "Monitore Suas Contas", description: "Revise regularmente suas contas bancárias e de cartões de crédito para detectar atividades suspeitas." },

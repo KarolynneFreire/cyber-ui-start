@@ -29,7 +29,7 @@ export const BannerTeam = () => {
       <BannerContentTeam>
         <img src={Images.Team} alt="Conheça a equipe" />
         <Team>
-        <p>◦ Lorem ipsum sit dolor</p>
+        <p>◦ Grandes projetos começam com uma equipe extraordinária.</p>
             <h3>Conheça a equipe</h3>
             <BtnExploreTeam/>
         </Team>

@@ -18,8 +18,8 @@ const HeroSection = () => {
       <Main>
       <Content>
         <LoadingComponentInitial isLoading={isLoading} />
-            <Legend>◦ Lorem ipsum sit dolor</Legend>
-          <Title>Lorem ipsum sit <br /> dolor <span>amet?</span></Title>
+            <Legend>◦ A sua privacidade merece mais atenção</Legend>
+            <Title>Você sabe onde <br /> seus dados <span>foram parar?</span></Title>
           <BtnFindOutMore/>
       </Content>
       </Main>

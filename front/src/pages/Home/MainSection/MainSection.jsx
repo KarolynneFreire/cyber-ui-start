@@ -12,7 +12,7 @@ const MainSection = () => {
                 <img src={Images.AboutUs} alt="Sobre nós" />
             </ImgContainer>
             <AboutUs>
-                <Legend>◦ Lorem ipsum sit dolor</Legend>
+                {/* <Legend>◦ Lorem ipsum sit dolor</Legend> */}
                         <Title>Quem somos?</Title>
                         <Description>Ajudamos você a proteger sua privacidade e segurança digital.</Description>
                         <Description>Nosso sistema verifica onde seus dados podem ter sido <br />

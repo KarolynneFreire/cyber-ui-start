@@ -27,14 +27,14 @@ const Footer = () => {
                 <FooterLogo>CYBER</FooterLogo>
               </a>
               <FooterText>
-                <p>Lorem ipsum dolor consectetursed eiusmod tempor incididuntamagna aliqua jamLorem ipsumaaliqua minim ven.</p>
+                <p>Nosso sistema verifica onde seus dados podem ter sido expostos e fornece informações sobre possíveis vazamentos.</p>
               </FooterText>
             </FooterItem>
 
             <FooterItem>
               <FooterTitle>Sobre Nós</FooterTitle>
               <FooterText>
-                <p>Lorem ipsum dolor consecteturased eiusmod tempor incididunt magna aliqua. </p>
+                <p>Ajudamos você a proteger sua privacidade e segurança digital. </p>
               </FooterText>
             </FooterItem>
 
