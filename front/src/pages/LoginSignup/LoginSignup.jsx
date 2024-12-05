@@ -25,17 +25,18 @@ export const Login = () => {
 
     const formData = new FormData(e.target);
     const data = {
-      email: formData.get("email"),
-      senha: formData.get("senha"),
+      username: formData.get("email"),
+      password: formData.get("senha"),
     };
-    // console.log('dados (login):', data);
+    console.log('dados (login):', data);
 
     try {
-      const response = await api.post('v1/api/login', data);
-      // console.log(response.data);
+      const response = await api.post('/v1/api/v1/api/login', data);
+      console.log(response.data);
+      const { access_token } = await response.data
       sucessToast('Login efetuado com sucesso!');
-      const token = response.data.avatar;
-      localStorage.setItem('token', token);
+      localStorage.setItem('access_token', access_token);
+      console.log('Token armazenado:', access_token);
       navigate('/');
 
     } catch (error) {
@@ -46,8 +47,6 @@ export const Login = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
-      navigate('/');
-      sucessToast('Finally');
     }
   };
 
@@ -61,7 +60,7 @@ export const Login = () => {
       email: formData.get("email"),
       senha: formData.get("senha"),
     };
-    // console.log("Dados cadastrados:", data);
+    console.log("Dados cadastrados:", data);
 
     if (!data.nome || !data.email || !data.senha) {
       setIsLoading(false);
@@ -72,9 +71,11 @@ export const Login = () => {
     try {
       await passwordYup.validate(data.senha);
 
-      const response = await api.post('v1/api/usuarios', data);
+      const response = await api.post('/v1/api/usuarios/', data);
       sucessToast('Cadastro realizado!');
-      // console.log('Cadastro:', response.data);
+      console.log('Cadastro:', response.data);
+      localStorage.setItem('token', response.data.avatar);
+      navigate('/');
     } catch (error) {
       errorToast(error);
       console.error('Erro ao cadastrar:', error);
@@ -82,7 +83,6 @@ export const Login = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 2000);
-      errorToast('Finally!');
     }
   };
 

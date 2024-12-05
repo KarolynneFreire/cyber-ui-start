@@ -26,7 +26,7 @@ export const RiskOverview = () => {
 
   useEffect(() => {
     const url =
-      "https://backend-osint.onrender.com/v1/api/vazamentos/procurar/rodrigofelixferreira%40hotmail.com";
+      "/v1/api/vazamentos/procurar/{email}";
 
     axios
       .get(url)
