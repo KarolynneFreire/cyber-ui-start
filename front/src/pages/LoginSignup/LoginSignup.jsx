@@ -1,7 +1,7 @@
 import NavBar from "../../components/NavBar/NavBar";
 import { Main } from "./LoginSignup.styles";
 import { useState } from "react";
-import { api } from '../../config/axios'
+import { api } from "../../config/axios";
 import { useNavigate } from "react-router-dom";
 import { passwordYup } from "../../utils/validation";
 import FormComponent from "../../components/FormComponent/FormComponent";
@@ -28,21 +28,20 @@ export const Login = () => {
       username: formData.get("email"),
       password: formData.get("senha"),
     };
-    console.log('dados (login):', data);
+    console.log("dados (login):", data);
 
     try {
-      const response = await api.post('/v1/api/v1/api/login', data);
+      const response = await api.post("/v1/api/login", data);
       console.log(response.data);
-      const { access_token } = await response.data
-      sucessToast('Login efetuado com sucesso!');
-      localStorage.setItem('access_token', access_token);
-      console.log('Token armazenado:', access_token);
-      navigate('/');
-
+      const { access_token } = await response.data;
+      sucessToast("Login efetuado com sucesso!");
+      localStorage.setItem("access_token", access_token);
+      localStorage.setItem("email", data.username);
+      console.log("Token armazenado:", access_token);
+      navigate("/RiskOverview");
     } catch (error) {
       errorToast(error);
-      console.error('Erro ao logar:', error);
-
+      console.error("Erro ao logar:", error);
     } finally {
       setTimeout(() => {
         setIsLoading(false);
@@ -64,21 +63,21 @@ export const Login = () => {
 
     if (!data.nome || !data.email || !data.senha) {
       setIsLoading(false);
-      errorToast('Preencha todos os campos necessários!');
+      errorToast("Preencha todos os campos necessários!");
       return;
     }
 
     try {
       await passwordYup.validate(data.senha);
 
-      const response = await api.post('/v1/api/usuarios/', data);
-      sucessToast('Cadastro realizado!');
-      console.log('Cadastro:', response.data);
-      localStorage.setItem('token', response.data.avatar);
-      navigate('/');
+      const response = await api.post("/v1/api/usuarios/", data);
+      sucessToast("Cadastro realizado!");
+      console.log("Cadastro:", response.data);
+      localStorage.setItem("token", response.data.avatar);
+      navigate("/");
     } catch (error) {
       errorToast(error);
-      console.error('Erro ao cadastrar:', error);
+      console.error("Erro ao cadastrar:", error);
     } finally {
       setTimeout(() => {
         setIsLoading(false);
@@ -111,10 +110,8 @@ export const Login = () => {
           />
         )}
       </Main>
-
     </>
   );
 };
 
 export default Login;
-

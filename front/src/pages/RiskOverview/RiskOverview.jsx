@@ -25,21 +25,36 @@ export const RiskOverview = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Controle do modal
 
   useEffect(() => {
-    const url =
-      "/v1/api/vazamentos/procurar/{email}";
+    try {
+      const email = localStorage.getItem("email");
+      const token = localStorage.getItem("access_token");
+  
+      const url = `https://backend-osint.onrender.com/v1/api/vazamentos/procurar/${email}`;
+  
+      console.log(email)
 
-    axios
-      .get(url)
-      .then((response) => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-      });
+      axios
+        .get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setData(response.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Erro na requisição:", err);
+          setError(err);
+          setLoading(false);
+        });
+    } catch (err) {
+      console.error("Erro no Local Storage:", err);
+      setError(err);
+      setLoading(false);
+    }
   }, []);
-
+  
   if (loading) {
     return <div>Carregando...</div>;
   }
