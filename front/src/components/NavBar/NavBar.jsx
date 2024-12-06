@@ -59,7 +59,7 @@ const NavBar = ({ onNavClick }) => {
           ) : (
             <>
               <IconProfile>
-                <Link to='/profile'><img src={userData.avatar} alt="Avatar" /></Link>
+                <Link to='/profile'><img src={userData?.avatar} alt="Avatar" /></Link>
               </IconProfile>
             </>
           )}
@@ -72,7 +72,7 @@ const NavBar = ({ onNavClick }) => {
 };
 
 NavBar.propTypes = {
-  onNavClick: PropTypes.func.isRequired,
+  onNavClick: PropTypes.func,
 }
 
 export default NavBar;

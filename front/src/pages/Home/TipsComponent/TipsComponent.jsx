@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { CarouselWrapper, CarouselTrack, CarouselSlide, TipCard, TipTitle, TipDescription, Controls, Button, Title } from "./Tips.styles";
 
 const tips = [
@@ -29,9 +29,9 @@ const TipsComponent = () => {
   return (
     <CarouselWrapper>
       <Title>Dicas de Segurança</Title>
-      <CarouselTrack currentIndex={currentIndex} visibleCards={visibleCards}>
+      <CarouselTrack $currentIndex={currentIndex} $visibleCards={visibleCards}>
         {tips.map((tip, index) => (
-          <CarouselSlide key={index} visibleCards={visibleCards}>
+          <CarouselSlide key={index} $visibleCards={visibleCards}>
             <TipCard>
               <TipTitle>{tip.title}</TipTitle>
               <TipDescription>{tip.description}</TipDescription>
