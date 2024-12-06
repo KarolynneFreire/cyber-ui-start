@@ -7,8 +7,9 @@ export const StatsContainer = styled.section`
   justify-content: center;
   align-items: center;
   padding: 40px;
-  gap: 20px;
   flex-wrap: wrap;
+  margin-top: 110px;
+  gap: 30px;
 `;
 
 // Título da seção

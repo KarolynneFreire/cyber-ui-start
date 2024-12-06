@@ -1,7 +1,30 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaShieldAlt, FaLock, FaExclamationTriangle, FaCheckCircle, FaTimesCircle, FaExclamationCircle } from 'react-icons/fa';
-import { QuizContainer, QuizCard, StartScreen, QuestionText, Answers, AnswerButton, Result, ResultText, Icon, QuizWrapper, ImageContainer, ContentWrapper } from './SecurityQuiz.styles';
+import { 
+  FaShieldAlt, 
+  FaLock, 
+  FaExclamationTriangle, 
+  FaCheckCircle, 
+  FaTimesCircle, 
+  FaExclamationCircle, 
+  FaRedo 
+} from 'react-icons/fa';
+import Confetti from 'react-confetti';
+import { 
+  QuizContainer, 
+  QuizCard, 
+  StartScreen, 
+  QuestionText, 
+  Answers, 
+  AnswerButton, 
+  Result, 
+  ResultText, 
+  Icon, 
+  QuizWrapper, 
+  ImageContainer, 
+  ContentWrapper, 
+  ProgressBar 
+} from './SecurityQuiz.styles';
 import quizImage from './cadeado.png'; 
 
 const SecurityQuiz = () => {
@@ -49,7 +72,9 @@ const SecurityQuiz = () => {
   };
 
   const handleAnswer = (answer) => {
-    const newScore = answer === questions[currentQuestion].correctAnswer ? score + questions[currentQuestion].points : score;
+    const newScore = answer === questions[currentQuestion].correctAnswer 
+      ? score + questions[currentQuestion].points 
+      : score;
 
     if (currentQuestion < questions.length - 1) {
       setScore(newScore);
@@ -82,59 +107,93 @@ const SecurityQuiz = () => {
 
   return (
     <QuizWrapper>
-    <header>
-      <h1>Teste Sua Segurança Digital</h1> {/* Título principal da sessão */}
-    </header>
-    <ContentWrapper>
-      <ImageContainer>
-        <img src={quizImage} alt="Quiz Illustration" />
-      </ImageContainer>
-      <QuizContainer>
-        {!quizStarted ? (
-          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, ease: 'backOut' }}>
-            <QuizCard>
-              <StartScreen>
-                <h2>Descubra se suas práticas digitais estão protegidas contra ameaças.</h2> {/* Título do quiz */}
-                <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={handleStartQuiz}>
-                  Iniciar
+      <header>
+        <h1>Teste Sua Segurança Digital</h1>
+      </header>
+      <ContentWrapper>
+        <ImageContainer>
+          <img src={quizImage} alt="Quiz Illustration" />
+        </ImageContainer>
+        <QuizContainer>
+          {!quizStarted ? (
+            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, ease: 'backOut' }}>
+              <QuizCard>
+                <StartScreen>
+                  <h2>Descubra se suas práticas digitais estão protegidas contra ameaças.</h2>
+                  <motion.button 
+                    whileHover={{ scale: 1.1 }} 
+                    whileTap={{ scale: 0.9 }} 
+                    onClick={handleStartQuiz}
+                  >
+                    Iniciar
+                  </motion.button>
+                </StartScreen>
+              </QuizCard>
+            </motion.div>
+          ) : quizFinished ? (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+              <Result className={getResultCategory()}>
+                {getResultCategory() === 'ok' && <Confetti />}
+                {getResultIcon()}
+                <ResultText>
+                  {getResultCategory() === 'ok' && 'Parabéns! Você está bem protegido!'}
+                  {getResultCategory() === 'intermediary' && 'Você precisa melhorar mais um pouco!'}
+                  {getResultCategory() === 'bad' && 'Atenção! Reveja suas práticas!'}
+                </ResultText>
+                <ProgressBar>
+                  <div style={{ width: `${(score / 10) * 100}%` }}></div>
+                </ProgressBar>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleStartQuiz}
+                  style={{
+                    backgroundColor: '#007BFF',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '5px',
+                    padding: '10px 15px',
+                    cursor: 'pointer',
+                    marginTop: '15px',
+                  }}
+                >
+                  <FaRedo size={20} /> Recomeçar Quiz
                 </motion.button>
-              </StartScreen>
-            </QuizCard>
-          </motion.div>
-        ) : quizFinished ? (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Result className={getResultCategory()}>
-              <ResultText>{getResultIcon()} <br />
-                {getResultCategory() === 'ok' && 'Parabéns! Você está bem protegido!'}
-                {getResultCategory() === 'intermediary' && 'Você está no caminho certo, mas pode melhorar.'}
-                {getResultCategory() === 'bad' && 'Atenção! Suas práticas digitais apresentam riscos!'}
-              </ResultText>
-            </Result>
-          </motion.div>
-        ) : (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <QuizCard>
-              <QuestionText>
-                <span>{questions[currentQuestion].icon}</span>
-                <p>{questions[currentQuestion].text}</p>
-              </QuestionText>
-              <Answers>
-                <AnswerButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => handleAnswer(true)}>
-                  Sim
-                </AnswerButton>
-                <AnswerButton whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => handleAnswer(false)}>
-                  Não
-                </AnswerButton>
-              </Answers>
-            </QuizCard>
-          </motion.div>
-        )}
-      </QuizContainer>
+              </Result>
+            </motion.div>
+          ) : (
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+              <QuizCard>
+                <QuestionText>
+                  <span>{questions[currentQuestion].icon}</span>
+                  <p>{questions[currentQuestion].text}</p>
+                </QuestionText>
+                <Answers>
+                  <AnswerButton 
+                    whileHover={{ scale: 1.1 }} 
+                    whileTap={{ scale: 0.9 }} 
+                    onClick={() => handleAnswer(true)}
+                  >
+                    Sim
+                  </AnswerButton>
+                  <AnswerButton 
+                    whileHover={{ scale: 1.1 }} 
+                    whileTap={{ scale: 0.9 }} 
+                    onClick={() => handleAnswer(false)}
+                  >
+                    Não
+                  </AnswerButton>
+                </Answers>
+              </QuizCard>
+            </motion.div>
+          )}
+        </QuizContainer>
       </ContentWrapper>
     </QuizWrapper>
   );
 };
 
 export default SecurityQuiz;
+
 
 
