@@ -7,6 +7,8 @@ export const QuizWrapper = styled.div`
   margin: 0 auto;
   padding: 20px;
   text-align: center;
+  margin-top: 150px;
+  gap: 30px;
 
   header {
     margin-bottom: 20px;
@@ -103,6 +105,7 @@ export const QuestionText = styled.div`
   align-items: center; /* Centraliza ícones e texto */
   font-size: 18px;
   margin-bottom: 20px;
+  
 
   span {
     margin-bottom: 10px; /* Espaço entre o ícone e o texto */
