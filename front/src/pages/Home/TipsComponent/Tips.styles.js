@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Wrapper do carrossel
 export const CarouselWrapper = styled.div`
   width: 100%;
   max-width: 1280px;
@@ -53,15 +52,15 @@ export const CarouselSlide = styled.div`
   align-items: center;
 
   @media (max-width: 1024px) {
-    flex: 0 0 ${(props) => `calc(100% / 3)`}; /* Mostra 3 cards */
+    flex: 0 0 ${(props) => `calc(100% / 3)`}; 
   }
 
   @media (max-width: 768px) {
-    flex: 0 0 ${(props) => `calc(100% / 2)`}; /* Mostra 2 cards */
+    flex: 0 0 ${(props) => `calc(100% / 2)`}; 
   }
 
   @media (max-width: 480px) {
-    flex: 0 0 100%; /* Mostra 1 card */
+    flex: 0 0 100%; 
   }
 `;
 
@@ -163,9 +162,5 @@ export const Title = styled.h1`
   width: 100%;
   @media (max-width: 768px) {
     font-size: 2rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.5rem;
   }
 `;

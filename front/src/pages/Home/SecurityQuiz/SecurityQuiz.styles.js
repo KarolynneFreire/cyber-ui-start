@@ -21,18 +21,31 @@ export const QuizWrapper = styled.div`
   width: 100%;
     }
   }
-`;
 
+  @media (max-width: 768px) {
+  padding: 10px;
+  margin-top: 80px;
+
+}
+
+@media (max-width: 480px) {
+  padding: 5px;
+}
+
+`;
 export const ContentWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap; /* Permite quebra de linha em telas menores */
+  justify-content: center; /* Centraliza os elementos */
   align-items: center;
   gap: 20px;
 
   @media (max-width: 768px) {
-    flex-direction: column; 
+    flex-direction: column; /* Alinha verticalmente em telas menores */
+    gap: 10px;
   }
 `;
+
 export const QuizContainer = styled.div`
   flex: 1; 
   display: flex;
@@ -43,23 +56,32 @@ export const QuizContainer = styled.div`
 `;
 
 export const ImageContainer = styled.div`
-  flex: 1; /* Ajusta o tamanho proporcionalmente */
+  flex: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    max-width: 100%;
+    max-width: 90%; /* Ajusta a largura máxima para 90% */
     height: auto;
     border-radius: 8px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    img {
+      max-width: 100%; /* Expande para toda a largura disponível */
+    }
   }
 `;
 
 
+
 export const QuizCard = styled.div`
-background-color: var(--primary-color);
-  width: 500px;
-  height: 300px;
+  background-color: var(--primary-color);
+  width: 130%; /* Usa 90% da largura da tela */
+  max-width: 500px; /* Limita a largura máxima */
+  min-height: 300px; 
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -67,6 +89,12 @@ background-color: var(--primary-color);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
+
+   @media (max-width: 768px) {
+      width: 100%; /* Usa 90% da largura da tela */
+
+  }
 `;
 
 export const StartScreen = styled.div`
@@ -144,29 +172,16 @@ export const AnswerButton = styled(motion.button)`
 `;
 
 
-export const Result = styled.div`
+export const Result = styled(QuizCard)` 
   font-size: 24px;
-  padding: 25px;
-  border-radius: 10px;
-
-  &.ok {
-    background-color: #4CAF50;
-    color: white;
-  }
-
-  &.intermediary {
-    background-color: #FF9800;
-    color: white;
-  }
-
-  &.bad {
-    background-color: #F44336;
-    color: white;
-  }
+  background-color: var(--primary-color);
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const ResultText = styled.p`
-  margin-top: 20px;
+  margin-top: 10px;
+  color: white;
 `;
 
 export const Icon = styled.div`
@@ -185,3 +200,22 @@ export const Icon = styled.div`
     color: #F44336;
   }
 `;
+
+
+export const ProgressBar = styled.div`
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+
+  div {
+    height: 10px;
+    width: 0;
+    background-color: ${({ category }) =>
+      category === 'ok' ? '#4CAF50' : category === 'intermediary' ? '#4CAF50' : '#4CAF50'};
+    transition: width 1.5s ease-in-out;
+  }
+`;
+
+
