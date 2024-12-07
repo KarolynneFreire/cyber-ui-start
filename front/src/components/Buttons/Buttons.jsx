@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BtnFindOutMoreStyled, BtnVerifiedStyled, TalkToUsStyled, BtnExploreTeamStyled } from './Buttons.styles'
+import { BtnFindOutMoreStyled, BtnVerifiedStyled, TalkToUsStyled, BtnExploreTeamStyled, BtnBackHomeStyled } from './Buttons.styles'
 import 'boxicons/css/boxicons.min.css';
 
 const BtnFindOutMore = () => {
@@ -52,6 +52,16 @@ export const BtnExploreTeam = () => {
     <>
       <Link to='/explore-team'>
         <BtnExploreTeamStyled>Explorar</BtnExploreTeamStyled>
+      </Link>
+    </>
+  );
+};
+
+export const BtnBackHome = () => {
+  return (
+    <>
+      <Link to='/'>
+        <BtnBackHomeStyled>Voltar para o inicio</BtnBackHomeStyled>
       </Link>
     </>
   );

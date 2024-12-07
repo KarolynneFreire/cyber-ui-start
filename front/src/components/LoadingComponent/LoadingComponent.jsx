@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { LoadingInitial, Logo, Container } from "./LoadingComponent.styles";
 import { RingLoader } from 'react-spinners';
 
-export const LoadingComponentInitial = ({ isLoading }) => {
+const LoadingComponentInitial = ({ isLoading }) => {
     return (
         <>
       {isLoading && (
@@ -25,3 +25,5 @@ export const LoadingSpin = () => {
       </Container>
     );
   };
+
+export default LoadingComponentInitial;
