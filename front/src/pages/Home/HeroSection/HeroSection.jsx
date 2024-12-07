@@ -1,6 +1,6 @@
 import { Main, Content, Legend, Title } from './HeroSection.styles';
 import BtnFindOutMore from '../../../components/Buttons/Buttons';
-import {LoadingComponentInitial} from '../../../components/LoadingComponent/LoadingComponent';
+import LoadingComponentInitial from '../../../components/LoadingComponent/LoadingComponent';
 import { useState, useEffect } from 'react';
 import 'boxicons'
 

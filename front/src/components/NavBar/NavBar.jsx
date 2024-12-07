@@ -1,11 +1,21 @@
-import { NavBarContainer, NavBarContent, Logo, Navigation, BtnLogin, BtnSignup, IconProfile } from './NavBar.styles'
+import { NavBarContainer, NavBarContent, Logo, Navigation, BtnLogin, BtnSignup, IconProfile, DropDown } from './NavBar.styles'
 import { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { api } from '../../config/axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-const NavBar = ({ onNavClick }) => {
+const NavBar = () => {
   const [userData, setUserData] = useState(null);
+  const [ showDropDown, setShowDropDown ] = useState(false)
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('email');
+    navigate('/');
+
+    window.location.reload();
+  };
 
   const token = localStorage.getItem('access_token');
 
@@ -52,15 +62,23 @@ const NavBar = ({ onNavClick }) => {
           {!token ? (
             <>
             <Link to='/login'>
-            <BtnLogin onClick={() => onNavClick('login')}>Entrar</BtnLogin>
+            <BtnLogin>Entrar</BtnLogin>
           </Link>
-          <BtnSignup onClick={() => onNavClick('signup')}>Catastre-se</BtnSignup>
+          <Link to='/signup'>
+            <BtnSignup>Catastre-se</BtnSignup>
+          </Link>
             </>
           ) : (
             <>
-              <IconProfile>
-                <Link to='/profile'><img src={userData?.avatar} alt="Avatar" /></Link>
+              <IconProfile showDropDown={showDropDown}>
+                <img src={userData?.avatar} alt="Avatar" />
+                <i onClick={() => setShowDropDown(!showDropDown)} className='bx bx-chevron-down'></i>
               </IconProfile>
+                {showDropDown && (
+                  <DropDown>
+                    <li><Link to='/RiskOverview'>Perfil</Link></li>
+                    <li onClick={handleLogout}>Sair</li>
+                  </DropDown>)}
             </>
           )}
             
@@ -70,9 +88,5 @@ const NavBar = ({ onNavClick }) => {
     </>
   );
 };
-
-NavBar.propTypes = {
-  onNavClick: PropTypes.func,
-}
 
 export default NavBar;
