@@ -5,6 +5,7 @@ import Home from '../pages/Home/Home'
 import TeamPage from '../pages/Team/Team'
 import Signup from '../pages/Signup/Signup.jsx'
 import NotFound from '../pages/NotFound/NotFound.jsx'
+import Profile from '../pages/Profile/Profile.jsx'
 
 const Router = () => {
 
@@ -18,6 +19,7 @@ const Router = () => {
                     <Route path='/explore-team' element={<TeamPage/>} />
                     <Route path='*' element={<NotFound/>} />
                     <Route path='/RiskOverview' element={<RiskOverview/>} />
+                    <Route path='/profile' element={<Profile/>} />
                 </Routes>
             </BrowserRouter>
         </>
