@@ -1,7 +1,33 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+export const giltch = keyframes`
+    0%, 100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    }
+    10% {
+    opacity: 0.8;
+    clip-path: inset(10% 0 20% 0);
+    }
+    20% {
+    opacity: 0.6;
+    transform: scaleX(1.02);
+    }
+    30% {
+    opacity: 0.9;
+    transform: scaleX(0.98);
+    }
+    50% {
+    opacity: 0.4;
+    }
+    70% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: scaleX(1);
+    }
+`
 
 export const BtnFindOutMoreStyled = styled.button`
-    /* display: block; */
     height: 50px;
     width: 100%;
     max-width: 200px;
@@ -14,7 +40,6 @@ export const BtnFindOutMoreStyled = styled.button`
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.4s ease-in-out;
-    /* border: red solid; */
 
     &:hover {
         background-color: red;
@@ -83,3 +108,27 @@ export const BtnExploreTeamStyled = styled.button`
     }
 `
 
+export const BtnBackHomeStyled = styled.button`
+    height: 60px;
+    width: 100%;
+    max-width: 250px;
+    padding: 0.75rem;
+    background-color: transparent;
+    border: var(--text-color) solid 1px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 30px;
+
+    cursor: pointer;
+    transition: border-image 0.4s ease-in-out;
+    animation: ${giltch} 5s ease-in-out infinite alternate;
+
+    &:hover {
+        border-image: linear-gradient(to right, #5C9698, #5C9698);
+        border-image-slice: 1;
+        border-radius: 4px;
+    }
+`

@@ -1,14 +1,21 @@
-import { NavBarContainer, NavBarContent, Logo, Navigation, BtnLogin, BtnSignup, IconProfile } from './NavBar.styles';
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { api } from '../../config/axios';
-import { Link } from 'react-router-dom';
+import { NavBarContainer, NavBarContent, Logo, Navigation, BtnLogin, BtnSignup, IconProfile, DropDown } from './NavBar.styles'
+import { useState, useEffect } from 'react'
+import { api } from '../../config/axios'
+import { Link, useNavigate } from 'react-router-dom'
 
-// Cache local para armazenar os dados do usuário
-let userCache = null;
-
-const NavBar = ({ onNavClick }) => {
+const NavBar = () => {
   const [userData, setUserData] = useState(null);
+  const [ showDropDown, setShowDropDown ] = useState(false)
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('email');
+    navigate('/');
+
+    window.location.reload();
+  };
 
   const token = localStorage.getItem('access_token');
   const email = localStorage.getItem('email');
@@ -62,33 +69,34 @@ const NavBar = ({ onNavClick }) => {
             <Logo>CYBER</Logo>
           </Link>
           <Navigation>
-            {!token ? (
-              <>
-                <Link to="/login">
-                  <BtnLogin onClick={() => onNavClick('login')}>Entrar</BtnLogin>
-                </Link>
-                <BtnSignup onClick={() => onNavClick('signup')}>Cadastre-se</BtnSignup>
-              </>
-            ) : (
-              <>
-                {userData && (
-                  <IconProfile>
-                    <Link to="/profile">
-                      <img src={userData.avatar} alt="Avatar" />
-                    </Link>
-                  </IconProfile>
-                )}
-              </>
-            )}
-          </Navigation>
-        </NavBarContent>
-      </NavBarContainer>
+          {!token ? (
+            <>
+            <Link to='/login'>
+            <BtnLogin>Entrar</BtnLogin>
+          </Link>
+          <Link to='/signup'>
+            <BtnSignup>Catastre-se</BtnSignup>
+          </Link>
+            </>
+          ) : (
+            <>
+              <IconProfile showDropDown={showDropDown}>
+                <img src={userData?.avatar} alt="Avatar" />
+                <i onClick={() => setShowDropDown(!showDropDown)} className='bx bx-chevron-down'></i>
+              </IconProfile>
+                {showDropDown && (
+                  <DropDown>
+                    <li><Link to='/RiskOverview'>Perfil</Link></li>
+                    <li onClick={handleLogout}>Sair</li>
+                  </DropDown>)}
+            </>
+          )}
+            
+            </Navigation>
+      </NavBarContent>
+    </NavBarContainer>
     </>
   );
-};
-
-NavBar.propTypes = {
-  onNavClick: PropTypes.func.isRequired,
 };
 
 export default NavBar;

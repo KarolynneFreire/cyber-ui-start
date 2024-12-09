@@ -3,7 +3,6 @@ import { Main } from "./LoginSignup.styles";
 import { useState } from "react";
 import { api } from "../../config/axios";
 import { useNavigate } from "react-router-dom";
-import { passwordYup } from "../../utils/validation";
 import FormComponent from "../../components/FormComponent/FormComponent";
 import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
 import NotificationModal from "../../components/Modal/NotificationModal";
@@ -14,7 +13,6 @@ export const Login = () => {
   const [isModalOpen, setModalOpen] = useState(true); // Controle do modal
   const userEmail = "usuario@exemplo.com";
 
-  const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -22,73 +20,37 @@ export const Login = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
-    const formData = new FormData(e.target);
-    const data = {
-      username: formData.get("email"),
-      password: formData.get("senha"),
-    };
-    console.log("dados (login):", data);
+  
+    const formData = new URLSearchParams();
+    formData.append("username", e.target.email.value);
+    formData.append("password", e.target.senha.value);
 
     try {
-      const response = await api.post("/v1/api/login", data);
-      console.log(response.data);
-      const { access_token } = await response.data;
+      const response = await api.post("/v1/api/login", formData, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+  
+      const { access_token } = response.data;
       sucessToast("Login efetuado com sucesso!");
       localStorage.setItem("access_token", access_token);
-      localStorage.setItem("email", data.username);
+      localStorage.setItem("email", e.target.email.value);
       console.log("Token armazenado:", access_token);
+      sucessToast("Login realizado!");
       navigate("/RiskOverview");
+      resetForm();
+
     } catch (error) {
-      errorToast(error);
+      errorToast("Erro ao logar");
       console.error("Erro ao logar:", error);
+
     } finally {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
-    }
-  };
-
-  const handleSignupSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const formData = new FormData(e.target);
-    const data = {
-      nome: formData.get("nome"),
-      email: formData.get("email"),
-      senha: formData.get("senha"),
-    };
-    console.log("Dados cadastrados:", data);
-
-    if (!data.nome || !data.email || !data.senha) {
-      setIsLoading(false);
-      errorToast("Preencha todos os campos necessários!");
-      return;
-    }
-
-    try {
-      await passwordYup.validate(data.senha);
-
-      const response = await api.post("/v1/api/usuarios/", data);
-      sucessToast("Cadastro realizado!");
-      console.log("Cadastro:", response.data);
-      localStorage.setItem("token", response.data.avatar);
-      navigate("/");
-    } catch (error) {
-      errorToast(error);
-      console.error("Erro ao cadastrar:", error);
-    } finally {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    }
-  };
-
-  const handleNavClick = (formType) => {
-    setIsLogin(formType === "login");
-    resetForm();
-  };
+}
+};
 
   const resetForm = () => {
     const form = document.querySelector("form");
@@ -98,14 +60,14 @@ export const Login = () => {
   return (
     <>
       <ResolutionNotAvailable />
-      <NavBar onNavClick={handleNavClick} />
+      <NavBar/>
       <Main>
         {isLoading ? (
           <LoadingSpin />
         ) : (
           <FormComponent
-            formType={isLogin ? "login" : "signup"}
-            onSubmit={isLogin ? handleLoginSubmit : handleSignupSubmit}
+            formType={"login"}  
+            onSubmit={handleLoginSubmit}
             isLoading={isLoading}
           />
         )}
