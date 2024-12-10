@@ -29,9 +29,9 @@ export const giltch = keyframes`
 `
 
 export const NavBarContainer = styled.header`
-    /* border: red solid 1px; */
     width: 100%;
     background-color: var(--primary-color);
+    z-index: 2;
 
     @media (max-width: 375px) {
     display: none;
@@ -39,34 +39,36 @@ export const NavBarContainer = styled.header`
 `
 
 export const NavBarContent = styled.div`
-    /* border: red solid 1px; */
     max-width: 1280px;
-    width: 100%;
+    width: 100vw;
     height: 80px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    @media (max-width: 1440px) {
+        padding: 0 20px;
+        
+    }
 `
 
 export const Logo = styled.h1`
-    /* border: red solid 1px; */
     font-size: 1.8rem;
     font-family: "Rubik Glitch", system-ui;
     font-weight: 400;
     color: var(--text-color);
     animation: ${giltch} 5s ease-in-out infinite alternate;
-
+    cursor: pointer;
 `
 
 export const Navigation = styled.nav`
-    /* border: red solid 1px; */
     display: flex;
+    align-items: center;
     gap: 5px;
 `
 
 export const BtnLogin = styled.button`
-    /* border: red solid 1px; */
     background-color: transparent;
     border: none;
     color: var(--text-color);
@@ -75,7 +77,6 @@ export const BtnLogin = styled.button`
 `
 
 export const BtnSignup = styled.button`
-    /* border: red solid 1px; */
     padding: 15px 35px;
     border: none;
     font-size: 1rem;
@@ -88,5 +89,53 @@ export const BtnSignup = styled.button`
     &:hover {
         background-image: var(--third-reverse-color);
         transition: 0.3s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+        font-size: .8rem;
+    }
+`
+
+export const IconProfile = styled.div`
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    gap: 10px;
+    cursor: pointer;
+    
+    & img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    & i {
+        cursor: pointer;
+        transform: ${({ showDropDown }) => (showDropDown ? 'rotate(-180deg)' : 'rotate(0deg)')};
+        transition: transform 0.3s ease;
+    }
+`
+
+export const DropDown = styled.ul`
+    background-color: aliceblue;
+    list-style: none;
+    border-radius: 4px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 70px;
+    font-family: 'Poppins', sans-serif;
+    
+    & li {
+        color: #000;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover {
+            background-color: var(--text-opactity-color);
+        }
     }
 `

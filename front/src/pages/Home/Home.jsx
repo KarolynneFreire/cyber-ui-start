@@ -1,8 +1,30 @@
+import NavBar from "../../components/NavBar/NavBar";
+import { Bg } from "./Home.styles";
+import HeroSection from "./HeroSection/HeroSection";
+import MainSection from './MainSection/MainSection'
+import ResponseNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
+import Footer from "../../components/Footer/Footer";
+import AnimatedStats from "./AnimatedStats/AnimatedStats.jsx";
+import TipsComponent from './TipsComponent/TipsComponent';
+import SecurityQuiz from './SecurityQuiz/SecurityQuiz';
+import BannerContainer from "../../components/Banner/Banners";
+import { BannerTeam } from "../../components/Banner/Banners";
+
 const Home = () => {
   return (
     <>
-      <h2>Home</h2>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi amet soluta aliquam qui cupiditate harum voluptate, beatae ducimus. Modi non maiores saepe iure tempore aperiam quae asperiores doloremque dolorem nihil?
+      <Bg>
+        <NavBar/>
+        <HeroSection/>
+        <BannerContainer/>
+        <MainSection/>
+        <AnimatedStats/>
+        <TipsComponent/>
+        <SecurityQuiz/>
+        <BannerTeam/>
+        <Footer/>
+      </Bg>
+      <ResponseNotAvailable/>
     </>
   );
 };
