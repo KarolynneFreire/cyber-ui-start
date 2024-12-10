@@ -31,6 +31,7 @@ export const giltch = keyframes`
 export const NavBarContainer = styled.header`
     width: 100%;
     background-color: var(--primary-color);
+    z-index: 2;
 
     @media (max-width: 375px) {
     display: none;

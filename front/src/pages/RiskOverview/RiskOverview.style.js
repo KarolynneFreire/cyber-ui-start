@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import "../../utils/variables.css";
 
 export const Main = styled.main`
@@ -67,27 +67,7 @@ export const RiskModal = styled.button`
   }
 `;
 
-export const ModalRiskOverview = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-image: var(--secondary-color);
-  padding: 3%;
-  border-radius: 15px;
-  z-index: 1000;
-  color: white;
-  border: 5px var(--fiveth-color) solid;
-  height: 70%;
-  width: 60%;
-  font-size: 1.2em;
-  overflow: auto;
 
-  & h2 {
-    margin: 0% 0% 5% 0%;
-    justify-self: center;
-  }
-`;
 
 export const ModalBack = styled.div`
   position: fixed;
@@ -99,37 +79,7 @@ export const ModalBack = styled.div`
   z-index: 999;
 `;
 
-export const ModalCloseBtn = styled.button`
-  background-color: var(--fiveth-color);
-  border: none;
-  border-radius: 5px;
-  height: 4vh;
-  width: 15vw; /* Ajuste o tamanho do botão conforme a largura da tela */
-  font-size: 1em;
-  color: white;
-  position: absolute; /* Retira o botão do fluxo normal */
-  bottom: 20px; /* Posiciona o botão na parte inferior */
-  left: 50%; /* Move o botão para o meio */
-  transform: translateX(
-    -50%
-  ); /* Ajuste para garantir que o botão fique centralizado */
 
-  /* Responsividade */
-  @media (max-width: 768px) {
-    width: 30vw; /* Ajusta o tamanho do botão para telas médias (tablets) */
-    font-size: 0.9em; /* Reduz o tamanho da fonte em telas menores */
-  }
-
-  @media (max-width: 375px) {
-    width: 50vw; /* Ajusta o tamanho do botão para telas pequenas (celulares) */
-    font-size: 0.8em; /* Reduz ainda mais o tamanho da fonte */
-  }
-
-  &:hover {
-    transform: translateX(-50%) translateY(-5px); /* Faz o botão subir */
-    border: 2px solid white; /* Adiciona uma borda branca quando o mouse passar */
-  }
-`;
 
 export const IconRiskModal = styled.img`
   height: 4vh;
@@ -179,21 +129,98 @@ export const TitleNoData = styled.h1`
 `;
 
 export const NotificationButton = styled.button`
-  background: none;
+  background-color: #43a047;
+  color: white;
   border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 16px;
   cursor: pointer;
   display: flex;
-  color: white;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, color 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-top: 20px; /* Margem superior para afastar do Navbar */
 
   &:hover {
-    color: var(--fiveth-color); /* Altere para a cor de destaque desejada */
-    transform: scale(1.2); /* Aumenta o botão ligeiramente ao passar o mouse */
+    background-color: #2e7d32; /* Verde mais escuro no hover */
   }
 
-  &:active {
-    transform: scale(1.1); /* Suaviza o clique reduzindo um pouco o tamanho */
+  i {
+    margin-right: 10px; /* Aumenta o espaço entre o ícone e o texto */
   }
 `;
+
+
+/* Animação para o modal */
+const modalFadeIn = `
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
+
+const zoomBounceCombo = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
+export const ModalRiskOverview = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: var(--secondary-color);
+  padding: 3%;
+  border-radius: 15px;
+  z-index: 1000;
+  color: white;
+  border: 5px var(--fiveth-color) solid;
+  height: 70%;
+  width: 60%;
+  font-size: 1.2em;
+  overflow: auto;
+  animation: ${zoomBounceCombo} 0.6s ease-out; /* Usando a animação aqui */
+`;
+
+/* Botão de Fechar do Modal */
+export const ModalCloseBtn = styled.button`
+  background-color: var(--fiveth-color);
+  border: none;
+  border-radius: 5px;
+  height: 4vh;
+  width: 15vw; /* Ajuste o tamanho do botão conforme a largura da tela */
+  font-size: 1em;
+  color: white;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &:hover {
+    transform: translateX(-50%) translateY(-5px); /* Faz o botão subir */
+    border: 2px solid white; /* Adiciona uma borda branca quando o mouse passar */
+  }
+`;
+
+
+

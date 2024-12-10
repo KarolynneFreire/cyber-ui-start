@@ -1,6 +1,24 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-
+const zoomBounceCombo = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  40% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+`;
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -15,6 +33,10 @@ export const Overlay = styled.div`
 `;
 
 export const ModalContainer = styled.div`
+  position: fixed; /* Modal precisa estar fixo */
+  top: 50%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Garante a centralização exata */
   background: var(--text-color);
   padding: 2rem;
   border-radius: 12px;
@@ -22,7 +44,7 @@ export const ModalContainer = styled.div`
   max-width: 400px;
   width: 100%;
   text-align: center;
-  position: relative;
+  animation: ${zoomBounceCombo} 0.6s ease-out; /* Aplica a animação */
 `;
 
 export const CloseButton = styled.button`
@@ -55,7 +77,6 @@ export const EmailInfo = styled.p`
   }
 `;
 
-
 export const CheckboxContainer = styled.div`
   margin-bottom: 1rem;
   display: flex;
@@ -64,11 +85,6 @@ export const CheckboxContainer = styled.div`
   justify-content: center; 
 `;
 
-/**
- * Estilo para o botão de confirmação.
- * A cor de fundo do botão é condicional, dependendo se o botão está desabilitado. * 
- * @param {boolean} disabled - Se o botão está desabilitado, altera a cor de fundo e o cursor.
- */
 export const ConfirmButton = styled.button`
   background: ${({ disabled }) => (disabled ? "#cccccc" : "var(--secondary-color)")};
   color: white;
@@ -77,7 +93,14 @@ export const ConfirmButton = styled.button`
   border-radius: 4px;
   cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
   font-size: 1rem;
-  transition: background-color 0.3s;
+
+
+  /* Hover Effect */
+  &:hover {
+    background: ${({ disabled }) =>
+      disabled ? "#cccccc" : "#28a745"}; /* Cor verde ao passar o mouse */
+    transform: ${({ disabled }) => (disabled ? "none" : "scale(1.05)")}; /* Aumenta o botão ao passar o mouse */
+  }
 `;
 
 
@@ -87,8 +110,3 @@ export const ErrorMessage = styled.p`
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 `;
-
-
-
-
-

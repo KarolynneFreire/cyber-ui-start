@@ -1,4 +1,7 @@
 import NavBar from "../../components/NavBar/NavBar";
+import { FaBell } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Main,
   RiskModal,
@@ -12,30 +15,24 @@ import {
   IconRiskModal,
   NotificationButton,
 } from "./RiskOverview.style";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
+import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import Footer from "../../components/Footer/Footer";
 import NotificationModal from "../../components/Modal/NotificationModal";
-import { FaBell } from "react-icons/fa";
-import DOMPurify from "dompurify"; // Importação para sanitização do HTML
 
 export const RiskOverview = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [modalData, setModalData] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRiskModalOpen, setIsRiskModalOpen] = useState(false);  // Modal de Vazamento
+  const [isNotificationModalOpen, setIsNotificationModalOpen] = useState(false); // Modal de Notificação
   const [noDataMessage, setNoDataMessage] = useState(false);
-  const [userEmail, setUserEmail] = useState(localStorage.getItem("email"));
+  const [userEmail, setUserEmail] = useState(localStorage.getItem("user_email"));
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    const email = localStorage.getItem("email");
+    const email = localStorage.getItem("user_email");
     const url = `https://backend-osint.onrender.com/v1/api/vazamentos/procurar/${email}`;
 
     axios
@@ -70,22 +67,26 @@ export const RiskOverview = () => {
       });
   }, []);
 
-  const handleOpenModal = (item) => {
+  // Abre o modal de detalhes do vazamento
+  const handleOpenRiskModal = (item) => {
     setModalData(item);
-    setIsModalOpen(true);
+    setIsRiskModalOpen(true);  // Abre o modal de vazamento
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  // Fecha o modal de detalhes do vazamento
+  const handleCloseRiskModal = () => {
+    setIsRiskModalOpen(false);
     setModalData(null);
   };
 
+  // Abre o modal de notificações
   const handleOpenNotificationModal = () => {
-    setIsModalOpen(true);
+    setIsNotificationModalOpen(true);  // Abre o modal de notificações
   };
 
+  // Fecha o modal de notificações
   const handleCloseNotificationModal = () => {
-    setIsModalOpen(false);
+    setIsNotificationModalOpen(false);
   };
 
   return (
@@ -93,14 +94,19 @@ export const RiskOverview = () => {
       <NavBar />
       <Main>
         <SpaceContent>
+          {/* Botão de notificação */}
           <NotificationButton onClick={handleOpenNotificationModal}>
-            <FaBell size={24} />
+            <FaBell size={18} style={{ marginRight: "8px" }} />
+            <span>Ativar notificações de novos vazamentos</span>
           </NotificationButton>
+
+          {/* Modal de Notificação */}
           <NotificationModal
             userEmail={userEmail}
-            isOpen={isModalOpen}
+            isOpen={isNotificationModalOpen}
             onClose={handleCloseNotificationModal}
           />
+          
           {noDataMessage && (
             <TitleNoData style={{ margin: "0% 0% 2% 0%" }}>
               <Title>
@@ -108,6 +114,7 @@ export const RiskOverview = () => {
               </Title>
             </TitleNoData>
           )}
+
           {!noDataMessage && (
             <>
               <TitleGroup>
@@ -128,9 +135,9 @@ export const RiskOverview = () => {
                         padding: "10px",
                       }}
                       contentArrowStyle={{ top: "25%" }}
-                      date={item.data_vazamento}
+                      date={new Date(item.data_vazamento).toLocaleDateString("pt-BR")}
                     >
-                      <RiskModal onClick={() => handleOpenModal(item)}>
+                      <RiskModal onClick={() => handleOpenRiskModal(item)}>
                         <IconRiskModal
                           src={item.image_uri}
                           alt="Imagem do vazamento"
@@ -149,7 +156,9 @@ export const RiskOverview = () => {
             </>
           )}
         </SpaceContent>
-        {isModalOpen && modalData && (
+
+        {/* Modal de Vazamento com animação moderna */}
+        {isRiskModalOpen && modalData && (
           <ModalRiskOverview>
             <h2>Detalhes do Vazamento</h2>
             <p>
@@ -162,7 +171,7 @@ export const RiskOverview = () => {
               <strong>Domínio:</strong> {modalData.dominio_url}
             </p>
             <p>
-              <strong>Data de Vazamento:</strong> {modalData.data_vazamento}
+            <strong>Data de Vazamento:</strong> {new Date(modalData.data_vazamento).toLocaleDateString("pt-BR")}
             </p>
             <p>
               <strong>Data de Atualização:</strong> {modalData.data_atualizacao}
@@ -172,7 +181,7 @@ export const RiskOverview = () => {
             </p>
             <div
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(modalData.descricao),
+                __html: modalData.descricao,
               }}
               style={{ color: "white" }}
             />
@@ -188,10 +197,11 @@ export const RiskOverview = () => {
                 <li>Nenhum dado disponível</li>
               )}
             </ul>
-            <ModalCloseBtn onClick={handleCloseModal}>Fechar</ModalCloseBtn>
+            <ModalCloseBtn onClick={handleCloseRiskModal}>Fechar</ModalCloseBtn>
           </ModalRiskOverview>
         )}
-        {isModalOpen && <ModalBack onClick={handleCloseModal} />}
+
+        {isRiskModalOpen && <ModalBack onClick={handleCloseRiskModal} />}
         <Footer />
       </Main>
     </>
