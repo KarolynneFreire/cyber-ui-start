@@ -30,7 +30,7 @@ const data2 = {
 
 
 const data3 = {
-  labels: ["Aumento", "Sem Aumento"],
+  labels: ["Aumento (2024)", "Sem Aumento(2024)"],
   datasets: [
     {
       data: [70, 30],
