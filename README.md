@@ -32,11 +32,12 @@ Este projeto foi desenvolvido para o **Hackathon Start+ Cibersegurança**, com o
 ### Passos:
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/KarolynneFreire/cyber-ui-start.git
    ```
 2. Instale as dependências do front-end:
    ```bash
-   cd frontend
+   cd cyber-ui-start
+   cd front
    npm install
    # ou
    yarn install
