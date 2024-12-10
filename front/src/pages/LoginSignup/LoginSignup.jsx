@@ -36,8 +36,7 @@ export const Login = () => {
 
       // Armazenar o token no localStorage
       localStorage.setItem("access_token", access_token);
-      localStorage.setItem("email", e.target.email.value);
-
+     
       // Requisição para pegar o perfil do usuário com o token recebido
       const profileResponse = await api.get("/v1/api/profile", {
         headers: {

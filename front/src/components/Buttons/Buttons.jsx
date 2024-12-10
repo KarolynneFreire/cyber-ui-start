@@ -14,7 +14,7 @@ const BtnFindOutMore = () => {
 
 export const BtnVerified = () => {
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('access_token');
 
   return (
     <>
@@ -26,7 +26,7 @@ export const BtnVerified = () => {
             </>
           ) : (
             <>
-              <Link to='/tela-de-Edberto'>
+              <Link to='/RiskOverview'>
                 <BtnVerifiedStyled>Verificar</BtnVerifiedStyled>
             </Link>
             </>

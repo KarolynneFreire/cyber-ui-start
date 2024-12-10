@@ -2,28 +2,30 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import Footer from "../../components/Footer/Footer";
-import { api } from "../../config/axios"; 
-import { 
-  Page, 
-  MainContainer, 
-  UserProfileContent, 
-  Profile, 
-  UserImage, 
-  Photo, 
-  Line, 
-  About, 
-  NameProfile, 
-  Span, 
-  Icon, 
-  Info, 
-  MainContent, 
-  UserProfileContainer, 
-  GroupSquare, 
-  Square, 
-  Graphics, 
-  P
+import { api } from "../../config/axios";
+import {
+  Page,
+  MainContainer,
+  UserProfileContent,
+  Profile,
+  UserImage,
+  Photo,
+  Line,
+  About,
+  NameProfile,
+  Span,
+  Icon,
+  Info,
+  MainContent,
+  UserProfileContainer,
+  GroupSquare,
+  Square,
+  Graphics,
+  P,
 } from './Profile.styles.js';
 import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable.jsx";
+import { LoadingInitial,  Logo } from "../../components/LoadingComponent/LoadingComponent.styles.js";
+
 
 const UserProfile = () => {
   const [userData, setUserData] = useState(null);
@@ -71,8 +73,8 @@ const UserProfile = () => {
       const updatedState = !notificationsEnabled;
 
       await api.patch(
-        `/v1/api/usuarios/${userData.id}`, 
-        { notificacoes_ativadas: updatedState }, 
+        `/v1/api/usuarios/${userData.id}`,
+        { notificacoes_ativadas: updatedState },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
@@ -87,7 +89,9 @@ const UserProfile = () => {
   }, []);
 
   if (!userData) {
-    return <p>Carregando...</p>; 
+    return <LoadingInitial>
+      <Logo>CYBER</Logo>
+    </LoadingInitial>;
   }
 
   return (
@@ -127,26 +131,36 @@ const UserProfile = () => {
           </UserProfileContent>
         </MainContainer>
         <MainContent>
+          <h2 style={{ color: 'white', marginBottom: "20px" }}>Vazamentos</h2> {/* Título dos Vazamentos */}
           <UserProfileContainer>
             <GroupSquare ref={groupSquareRef}>
               {loadingLeaks ? (
-                <p>Carregando vazamentos...</p>
+                <p style={{ color: 'white' }}>Carregando vazamentos...</p>
               ) : leaks.length > 0 ? (
                 leaks.map((leak) => (
-                  <Square key={leak.id}>
+                  <Square
+                    key={leak.id}
+                    onClick={() => {
+                      const url = leak.dominio_url.startsWith('http') ? leak.dominio_url : `https://${leak.dominio_url}`;
+                      window.open(url, "_blank");  // Abre o domínio completo com protocolo
+                    }}
+                    style={{ cursor: 'pointer' }}  // Cursor de clique para indicar que é interativo
+                  >
                     <Graphics>{leak.titulo}</Graphics>
                     <img src={leak.image_uri} alt={leak.titulo} width={50} />
-                    <P>{new Date(leak.data_vazamento).toLocaleDateString()}</P>
+                    <P style={{ color: 'white' }}>
+                      {new Date(leak.data_vazamento).toLocaleDateString('pt-BR')}
+                    </P>
                   </Square>
                 ))
               ) : (
-                <P>Parabéns! Não há vazamentos na sua conta.</P>
+                <P style={{ color: 'white' }}>Parabéns! Não há vazamentos na sua conta.</P>
               )}
             </GroupSquare>
           </UserProfileContainer>
         </MainContent>
       </Page>
-    <Footer />
+      <Footer />
     </>
   );
 };
