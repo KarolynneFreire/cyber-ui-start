@@ -40,7 +40,7 @@ export const Item = styled.div`
 `
 
 export const BannerContentTeam = styled.section`
-    max-width: 750px;
+max-width: 1280px;
     width: 100%;
     margin: 80px;
     display: flex;
@@ -52,6 +52,8 @@ export const BannerContentTeam = styled.section`
     color: var(--text-color);
     font-size: .8rem;
     border-radius: 6px;
+    margin-top: 110px;
+    gap: 30px;
     
     & img {
         width: 120px;

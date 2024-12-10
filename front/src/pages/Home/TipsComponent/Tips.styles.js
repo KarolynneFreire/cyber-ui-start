@@ -118,7 +118,7 @@ export const TipTitle = styled.h3`
 export const TipDescription = styled.p`
   margin-top: 40px;
   color: var(--text-opactity-color);
-  font-size: 0.9rem; /* Diminui o texto para ajustar */
+  font-size: 0.7rem; 
   line-height: 1.4;
   flex-grow: 1;
 

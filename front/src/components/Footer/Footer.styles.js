@@ -6,6 +6,8 @@ export const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 110px;
+  gap: 30px;
 `
 
 export const FooterContent = styled.section`
