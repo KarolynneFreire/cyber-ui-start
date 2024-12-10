@@ -1,37 +1,51 @@
-import NavBar from "../../components/NavBar/NavBar"; // Importa o componente NavBar para exibir na página
-import { 
-  Main, RiskModal, SpaceContent, Title, TitleGroup, TitleNoData, 
-  ModalBack, ModalRiskOverview, ModalCloseBtn, IconRiskModal 
-} from "./RiskOverview.style"; // Importa os componentes de estilo personalizados
-import { useState, useEffect } from "react"; // Importa hooks do React
-import axios from "axios"; // Importa a biblioteca axios para fazer requisições HTTP
-import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component"; // Importa componentes para exibir uma linha do tempo vertical
-import "react-vertical-timeline-component/style.min.css"; // Importa o estilo do componente de linha do tempo
-import Footer from "../../components/Footer/Footer"; // Importa o componente Footer
-import NotificationModal from "../../components/Modal/NotificationModal"; // Importa o componente de modal de notificação
+import NavBar from "../../components/NavBar/NavBar";
+import {
+  Main,
+  RiskModal,
+  SpaceContent,
+  Title,
+  TitleGroup,
+  TitleNoData,
+  ModalBack,
+  ModalRiskOverview,
+  ModalCloseBtn,
+  IconRiskModal,
+  NotificationButton,
+} from "./RiskOverview.style";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+import Footer from "../../components/Footer/Footer";
+import NotificationModal from "../../components/Modal/NotificationModal";
+import { FaBell } from "react-icons/fa";
+import DOMPurify from "dompurify"; // Importação para sanitização do HTML
 
-export const RiskOverview = () => { // Define o componente funcional 'RiskOverview'
-  const [data, setData] = useState(null); // Estado para armazenar dados dos vazamentos
-  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
-  const [error, setError] = useState(null); // Estado para armazenar erros
-  const [modalData, setModalData] = useState(null); // Estado para armazenar dados do modal
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar a abertura do modal
-  const [noDataMessage, setNoDataMessage] = useState(false); // Estado para controlar a exibição de mensagem de ausência de dados
+export const RiskOverview = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [modalData, setModalData] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [noDataMessage, setNoDataMessage] = useState(false);
+  const [userEmail, setUserEmail] = useState(localStorage.getItem("email"));
 
-  useEffect(() => { // Hook que é executado quando o componente é montado
-    const token = localStorage.getItem("access_token"); // Pega o token de acesso do localStorage
-    const email = localStorage.getItem("email"); // Pega o email do localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    const email = localStorage.getItem("email");
+    const url = `https://backend-osint.onrender.com/v1/api/vazamentos/procurar/${email}`;
 
-    const url = `https://backend-osint.onrender.com/v1/api/vazamentos/procurar/${email}`; // Define a URL da API para buscar vazamentos
-
-    axios // Faz a requisição GET com o axios
+    axios
       .get(url, {
         headers: {
-          Authorization: `Bearer ${token}`, // Inclui o token no cabeçalho da requisição
+          Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => { // Quando a requisição for bem-sucedida
-        const uniqueData = response.data.filter( // Filtra dados duplicados
+      .then((response) => {
+        const uniqueData = response.data.filter(
           (item, index, self) =>
             index ===
             self.findIndex(
@@ -41,51 +55,66 @@ export const RiskOverview = () => { // Define o componente funcional 'RiskOvervi
                 t.data_vazamento === item.data_vazamento
             )
         );
-        setData(uniqueData); // Atualiza os dados com os dados filtrados
-        setLoading(false); // Define o estado de loading como falso
-        setNoDataMessage(false); // Define a mensagem de ausência de dados como falsa
+        setData(uniqueData);
+        setLoading(false);
+        setNoDataMessage(false);
       })
-      .catch((err) => { // Se houver erro na requisição
-        if (err.response && err.response.status === 404) { // Se o erro for 404
-          setNoDataMessage(true); // Ativa a mensagem de "Parabéns, não há vazamentos"
-          setData([]); // Define os dados como um array vazio
+      .catch((err) => {
+        if (err.response && err.response.status === 404) {
+          setNoDataMessage(true);
+          setData([]);
         } else {
-          setError(err); // Armazena o erro
+          setError(err);
         }
-        setLoading(false); // Define o estado de loading como falso
+        setLoading(false);
       });
-  }, []); // O array vazio garante que o useEffect execute apenas uma vez, quando o componente for montado
+  }, []);
 
-  const handleOpenModal = (item) => { // Função para abrir o modal com os dados do item
-    setModalData(item); // Define os dados do item no estado 'modalData'
-    setIsModalOpen(true); // Abre o modal
+  const handleOpenModal = (item) => {
+    setModalData(item);
+    setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => { // Função para fechar o modal
-    setIsModalOpen(false); // Fecha o modal
-    setModalData(null); // Limpa os dados do modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setModalData(null);
+  };
+
+  const handleOpenNotificationModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseNotificationModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      <NavBar /> {/* Exibe a barra de navegação*/}
-      <Main> 
-        <SpaceContent> 
-          <NotificationModal /> {/*// Exibe o modal de notificação*/}
-          {noDataMessage && ( // Exibe a mensagem de parabéns se 'noDataMessage' for verdadeiro
+      <NavBar />
+      <Main>
+        <SpaceContent>
+          <NotificationButton onClick={handleOpenNotificationModal}>
+            <FaBell size={24} />
+          </NotificationButton>
+          <NotificationModal
+            userEmail={userEmail}
+            isOpen={isModalOpen}
+            onClose={handleCloseNotificationModal}
+          />
+          {noDataMessage && (
             <TitleNoData style={{ margin: "0% 0% 2% 0%" }}>
               <Title>
                 Parabéns! Não há vazamentos encontrados para o seu e-mail!
               </Title>
             </TitleNoData>
           )}
-          {!noDataMessage && ( // Exibe os dados de vazamento se não houver a mensagem de "sem dados"
+          {!noDataMessage && (
             <>
               <TitleGroup>
-                <Title>Dados de Vazamentos</Title> 
+                <Title>Dados de Vazamentos</Title>
               </TitleGroup>
-              <VerticalTimeline lineColor="#0C6DC8"> 
-                {data && // Se 'data' estiver disponível, mapeia os dados
+              <VerticalTimeline lineColor="#0C6DC8">
+                {data &&
                   data.map((item, index) => (
                     <VerticalTimelineElement
                       key={index}
@@ -99,28 +128,28 @@ export const RiskOverview = () => { // Define o componente funcional 'RiskOvervi
                         padding: "10px",
                       }}
                       contentArrowStyle={{ top: "25%" }}
-                      date={item.data_vazamento} // Exibe a data do vazamento
+                      date={item.data_vazamento}
                     >
-                      <RiskModal onClick={() => handleOpenModal(item)}> 
-                        <IconRiskModal 
-                          src={item.image_uri} 
-                          alt="Imagem do vazamento" 
+                      <RiskModal onClick={() => handleOpenModal(item)}>
+                        <IconRiskModal
+                          src={item.image_uri}
+                          alt="Imagem do vazamento"
                         />
                         <div>
-                          <h1>{item.nome}</h1> {/* Exibe o nome do vazamento */}
-                          {item.dominio_url} <br /> {/* Exibe o domínio URL */}
+                          <h1>{item.nome}</h1>
+                          {item.dominio_url} <br />
                         </div>
                       </RiskModal>
                     </VerticalTimelineElement>
                   ))}
               </VerticalTimeline>
               <TitleGroup style={{ margin: "0% 0% 2% 0%" }}>
-                <Title>Acabou ;)</Title> {/* Exibe uma mensagem quando todos os dados são carregados */}
+                <Title>Acabou ;)</Title>
               </TitleGroup>
             </>
           )}
         </SpaceContent>
-        {isModalOpen && modalData && ( // Se o modal estiver aberto e houver dados, exibe os detalhes
+        {isModalOpen && modalData && (
           <ModalRiskOverview>
             <h2>Detalhes do Vazamento</h2>
             <p>
@@ -139,15 +168,21 @@ export const RiskOverview = () => { // Define o componente funcional 'RiskOvervi
               <strong>Data de Atualização:</strong> {modalData.data_atualizacao}
             </p>
             <p>
-              <strong>Descricao:</strong> {modalData.descricao}
+              <strong>Descrição:</strong>
             </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(modalData.descricao),
+              }}
+              style={{ color: "white" }}
+            />
             <p>
               <strong>Dados Vazados:</strong>
             </p>
             <ul>
               {modalData.data_classes && modalData.data_classes.length > 0 ? (
                 modalData.data_classes.map((item, index) => (
-                  <li key={index}>{item}</li> 
+                  <li key={index}>{item}</li>
                 ))
               ) : (
                 <li>Nenhum dado disponível</li>
@@ -156,11 +191,11 @@ export const RiskOverview = () => { // Define o componente funcional 'RiskOvervi
             <ModalCloseBtn onClick={handleCloseModal}>Fechar</ModalCloseBtn>
           </ModalRiskOverview>
         )}
-        {isModalOpen && <ModalBack onClick={handleCloseModal} />} 
-        <Footer /> {/* Exibe o rodapé */}
+        {isModalOpen && <ModalBack onClick={handleCloseModal} />}
+        <Footer />
       </Main>
     </>
   );
 };
 
-export default RiskOverview; // Exporta o componente para ser usado em outras partes do aplicativo
+export default RiskOverview;

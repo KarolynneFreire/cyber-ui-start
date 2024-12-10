@@ -177,3 +177,23 @@ export const TitleNoData = styled.h1`
     padding: 10px;
   }
 `;
+
+export const NotificationButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    color: var(--fiveth-color); /* Altere para a cor de destaque desejada */
+    transform: scale(1.2); /* Aumenta o botão ligeiramente ao passar o mouse */
+  }
+
+  &:active {
+    transform: scale(1.1); /* Suaviza o clique reduzindo um pouco o tamanho */
+  }
+`;
