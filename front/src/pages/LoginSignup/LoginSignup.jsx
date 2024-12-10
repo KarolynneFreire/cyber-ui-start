@@ -1,7 +1,7 @@
 import NavBar from "../../components/NavBar/NavBar";
 import { Main } from "./LoginSignup.styles";
 import { useState } from "react";
-import { api } from '../../config/axios'
+import { api } from "../../config/axios";
 import { useNavigate } from "react-router-dom";
 import FormComponent from "../../components/FormComponent/FormComponent";
 import ResolutionNotAvailable from "../../components/ResolutionNotAvailable/ResolutionNotAvailable";
@@ -72,7 +72,6 @@ export const Login = () => {
           />
         )}
       </Main>
-
     </>
   );
 };

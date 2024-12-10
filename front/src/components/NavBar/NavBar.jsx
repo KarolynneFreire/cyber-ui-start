@@ -18,43 +18,53 @@ const NavBar = () => {
   };
 
   const token = localStorage.getItem('access_token');
+  const email = localStorage.getItem('email');
+
 
   const getUserData = async () => {
-    const token = localStorage.getItem('access_token');
-    console.log('Token recuperado:', token);
-  
+    // Verifica se o cache já possui os dados do usuário
+    if (userCache) {
+      console.log("Usando dados do cache.");
+      return userCache;
+    }
+
+    console.log("Token recuperado:", token);
+
     if (!token) {
       console.error("Token não encontrado. Usuário não está autenticado.");
-      return;
+      return null;
     }
-  
+
     try {
       const response = await api.get('/v1/api/profile', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-  
+
+      // Armazena os dados do usuário no cache
+      userCache = response.data;
+      console.log("Dados do usuário armazenados no cache:", userCache);
       return response.data;
     } catch (error) {
       console.error("Erro ao acessar rota protegida:", error.response?.data || error.message);
-  }
+      return null;
+    }
   };
 
   useEffect(() => {
     const fetchUserData = async () => {
       const data = await getUserData();
-      setUserData(data);
+      setUserData(data); // Atualiza o estado com os dados do usuário
     };
 
     fetchUserData();
-  }, []);
-
+  }, []); // Executa apenas uma vez ao montar o componente
 
   return (
     <>
-    <NavBarContainer id='home'>
-      <NavBarContent>
+      <NavBarContainer id="home">
+        <NavBarContent>
           <Link to="/">
             <Logo>CYBER</Logo>
           </Link>
