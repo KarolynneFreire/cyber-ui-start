@@ -76,7 +76,7 @@ const NavBar = () => {
               </IconProfile>
                 {showDropDown && (
                   <DropDown>
-                    <li><Link to='/RiskOverview'>Perfil</Link></li>
+                    <li><Link to='/Profile'>Perfil</Link></li>
                     <li onClick={handleLogout}>Sair</li>
                   </DropDown>)}
             </>
